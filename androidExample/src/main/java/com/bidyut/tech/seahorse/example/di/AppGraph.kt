@@ -35,6 +35,9 @@ class AppGraph(
         lateinit var instance: AppGraph
             private set
 
+        val isAssigned: Boolean
+            get() = ::instance.isInitialized
+
         fun assign(
             graph: AppGraph,
         ) {

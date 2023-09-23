@@ -50,6 +50,12 @@ kotlin {
             dependencies {
                 implementation(libs.ktor.client.android)
                 implementation(libs.okhttp.core)
+                implementation(libs.androidx.work.runtime)
+            }
+        }
+        val androidUnitTest by getting {
+            dependencies {
+                implementation(libs.androidx.work.test)
             }
         }
         val iosMain by getting {

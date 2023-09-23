@@ -8,7 +8,7 @@ import kotlinx.datetime.Instant
 class Seahorse(
     configBuilder: SeahorseConfig.Builder.() -> Unit,
 ) {
-    private val config = SeahorseConfig.Builder()
+    internal val config = SeahorseConfig.Builder()
         .apply(configBuilder)
         .build()
 

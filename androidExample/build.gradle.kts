@@ -42,6 +42,7 @@ dependencies {
     implementation(project(":seahorse:core"))
 
     implementation(libs.kotlin.datetime)
+    implementation(libs.androidx.work.runtime)
 
     val composeBom = platform(libs.compose.bom)
     implementation(composeBom)
