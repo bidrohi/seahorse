@@ -17,7 +17,7 @@ kotlin {
         }
     }
 
-    val xcf = XCFramework()
+    val xcf = XCFramework("Seahorse")
     listOf(
         iosX64(),
         iosArm64(),
