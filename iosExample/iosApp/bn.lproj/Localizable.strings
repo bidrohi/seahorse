@@ -1,0 +1,12 @@
+/* 
+  Localizable.strings
+  iosApp
+
+  Created by Saud Khan on 2023-09-23.
+  Copyright © 2023 orgName. All rights reserved.
+*/
+"hello" = "হ্যালো";
+"world" = "পৃথিবী";
+"foundation" = "ভিত্তি";
+"dune" = "টিলা";
+"three_body_problem" = "থ্রি বডি প্রবলেম";
