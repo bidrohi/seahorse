@@ -29,12 +29,9 @@ class AppGraph {
             let sourceSink = MapLocalSourceSink()
             b.localSource = sourceSink
             b.localSink = sourceSink
-            b.networkSource = MapNetworkSource(
-                stringMapByLanguage: [
-                    LanguageKt.LanguageEnglish: stringKeys.reduce(into: [String: String]()) { $0[$1] = "network \($1)" },
-                    LanguageKt.LanguageBengali: stringKeys.reduce(into: [String: String]()) { $0[$1] = "অন্তর্জাল \($1)" },
-                ]
-            )
+            b.networkSource = DarwinKtorNetworkSource(getUrlForLanguageId: { languageId in
+                "https://www.bidyut.com/tech/seahorse/sample/\(languageId.lowercased()).json"
+            })
         }
     }
 }
