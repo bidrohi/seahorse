@@ -15,7 +15,6 @@ class Seahorse(
     private val repository = StringsRepository(
         config.localSource,
         config.fallbackSource,
-        config.defaultLanguageId,
     )
 
     var defaultLanguageId: LanguageId
@@ -25,20 +24,25 @@ class Seahorse(
             config.defaultLanguageId = value
         }
 
-    fun getString(
+    fun getStringForLanguage(
+        languageId: LanguageId,
         key: String,
         vararg formatArgs: Any,
-        languageId: LanguageId = config.defaultLanguageId,
     ): String = repository.getStringByKey(languageId, key, *formatArgs)
 
-    fun getString(
+    fun getStringForLanguage(
+        languageId: LanguageId,
         key: String,
-        vararg formatArgs: Any,
-    ): String = getString(key, *formatArgs, languageId = config.defaultLanguageId)
+    ): String = repository.getStringByKey(languageId, key)
 
     fun getString(
         key: String,
-    ): String = getString(key, languageId = config.defaultLanguageId)
+        vararg formatArgs: Any,
+    ): String = getStringForLanguage(config.defaultLanguageId, key, *formatArgs)
+
+    fun getString(
+        key: String,
+    ): String = getStringForLanguage(config.defaultLanguageId, key)
 
     suspend fun fetchStrings(
         languageId: LanguageId,

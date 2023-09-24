@@ -4,6 +4,7 @@ kotlin = "1.8.22"
 kotlin-coroutines = "1.7.3"
 kotlin-datetime = "0.4.1"
 kotlin-serialization-json = "1.5.1"
+kotlinx-kover = "0.7.3"
 ksp = "1.8.22-1.0.11"
 compose-compiler = "1.4.8"
 ktor = "2.3.4"
@@ -59,5 +60,6 @@ android-library = { id = "com.android.library", version.ref = "androidGradle" }
 kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
 kotlin-multiplatform = { id = "org.jetbrains.kotlin.multiplatform", version.ref = "kotlin" }
 kotlin-serialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }
+kotlinx-kover = { id = "org.jetbrains.kotlinx.kover", version.ref = "kotlinx-kover" }
 ksp = { id = "com.google.devtools.ksp", version.ref = "ksp" }
 sqldelight = { id = "app.cash.sqldelight", version.ref = "sqldelight" }

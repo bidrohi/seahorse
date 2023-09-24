@@ -28,8 +28,8 @@ data class SeahorseConfig(
         fun build() = SeahorseConfig(
             defaultLanguageId,
             cacheInterval,
-            fallbackSource ?: throw IllegalStateException("fallbackSource is not set"),
-            localSource ?: throw IllegalStateException("localSource is not set"),
+            fallbackSource ?: throw IllegalArgumentException("fallbackSource is not set"),
+            localSource ?: throw IllegalArgumentException("localSource is not set"),
             localSink,
             networkSource,
         )

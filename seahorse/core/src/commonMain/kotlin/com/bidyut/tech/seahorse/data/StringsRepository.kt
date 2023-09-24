@@ -1,12 +1,10 @@
 package com.bidyut.tech.seahorse.data
 
-import com.bidyut.tech.seahorse.model.LanguageEnglish
 import com.bidyut.tech.seahorse.model.LanguageId
 
 class StringsRepository(
     private val source: LocalSource,
     private val fallback: FallbackSource,
-    var defaultLanguageId: LanguageId = LanguageEnglish,
 ) {
     fun getStringByKey(
         languageId: LanguageId,
