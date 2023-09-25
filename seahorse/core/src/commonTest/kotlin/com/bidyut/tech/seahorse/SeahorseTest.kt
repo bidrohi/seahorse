@@ -1,12 +1,13 @@
 package com.bidyut.tech.seahorse
 
 import com.bidyut.tech.seahorse.data.MapFallbackSource
-import com.bidyut.tech.seahorse.data.MapLocalSourceSink
+import com.bidyut.tech.seahorse.data.MapLocalStore
 import com.bidyut.tech.seahorse.data.MapNetworkSource
 import kotlinx.coroutines.runBlocking
 import kotlin.test.Test
 import kotlin.test.assertEquals
 import kotlin.test.assertFailsWith
+import kotlin.time.Duration.Companion.days
 
 class SeahorseTest {
     @Test
@@ -17,30 +18,31 @@ class SeahorseTest {
                 mapOf(
                     "en" to mapOf(
                         "key" to "value",
-                        "fallbackKey" to "fallbackValue"
+                        "keyWithParam" to "%s value",
+                        "fallbackKey" to "fallbackValue",
                     ),
                 )
             )
-            val sourceSink = MapLocalSourceSink()
-            localSource = sourceSink
-            localSink = sourceSink
+            localStore = MapLocalStore()
             networkSource = MapNetworkSource(
                 mapOf(
                     "bn" to mapOf(
                         "key" to "networkValue",
-                        "keyWithParam" to "%s value"
+                        "keyWithParam" to "%s networkValue",
                     ),
                 )
             )
         }
         assertEquals("en", seahorse.defaultLanguageId)
-        assertEquals("value", seahorse.getString("key", "param"))
+        assertEquals(1.days, seahorse.cacheInterval)
+        assertEquals("value", seahorse.getString("key"))
+        assertEquals("param value", seahorse.getString("keyWithParam", "param"))
         runBlocking {
             seahorse.fetchStrings("bn")
         }
         seahorse.defaultLanguageId = "es"
         assertEquals("networkValue", seahorse.getStringForLanguage("bn", "key"))
-        assertEquals("param value", seahorse.getStringForLanguage("bn", "keyWithParam", "param"))
+        assertEquals("param networkValue", seahorse.getStringForLanguage("bn", "keyWithParam", "param"))
         runBlocking {
             seahorse.fetchStrings("bn")
             seahorse.fetchStrings("es")
@@ -52,23 +54,6 @@ class SeahorseTest {
         assertFailsWith(IllegalArgumentException::class) {
             Seahorse {
                 defaultLanguageId = "en"
-            }
-        }
-    }
-
-    @Test()
-    fun `Seahorse needs local source`() {
-        assertFailsWith(IllegalArgumentException::class) {
-            Seahorse {
-                defaultLanguageId = "en"
-                fallbackSource = MapFallbackSource(
-                    mapOf(
-                        "en" to mapOf(
-                            "key" to "value",
-                            "fallbackKey" to "fallbackValue"
-                        ),
-                    )
-                )
             }
         }
     }

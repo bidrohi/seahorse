@@ -3,7 +3,16 @@ package com.bidyut.tech.seahorse.data
 import com.bidyut.tech.seahorse.model.LanguageId
 import kotlinx.datetime.Instant
 
-interface LocalSource {
+interface LocalStore {
+    fun getLastUpdatedTime(
+        languageId: LanguageId
+    ): Instant?
+
+    suspend fun storeStrings(
+        languageId: LanguageId,
+        strings: Map<String, String>,
+    ): Result<Boolean>
+
     fun getStringByKey(
         languageId: LanguageId,
         key: String,

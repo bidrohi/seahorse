@@ -26,9 +26,7 @@ class AppGraph {
         self.stringKeys = stringKeys
         self.seahorse = Seahorse { b in
             b.fallbackSource = NSLocalizedFallbackSource(rootBundle: Bundle.main, tableName: nil)
-            let sourceSink = MapLocalSourceSink()
-            b.localSource = sourceSink
-            b.localSink = sourceSink
+            b.localStore = MapLocalStore()
             b.networkSource = DarwinKtorNetworkSource(getUrlForLanguageId: { languageId in
                 "https://www.bidyut.com/tech/seahorse/sample/\(languageId.lowercased()).json"
             })

@@ -1,28 +1,35 @@
 package com.bidyut.tech.seahorse
 
 import com.bidyut.tech.seahorse.data.StringsRepository
+import com.bidyut.tech.seahorse.model.LanguageEnglish
 import com.bidyut.tech.seahorse.model.LanguageId
-import kotlinx.datetime.Clock
 import kotlinx.datetime.Instant
+import kotlin.time.Duration
 
 class Seahorse(
     configBuilder: SeahorseConfig.Builder.() -> Unit,
 ) {
-    internal val config = SeahorseConfig.Builder()
-        .apply(configBuilder)
-        .build()
+    private val repository: StringsRepository
+    internal val cacheInterval: Duration
 
-    private val repository = StringsRepository(
-        config.localSource,
-        config.fallbackSource,
-    )
-
-    var defaultLanguageId: LanguageId
-        get() = config.defaultLanguageId
+    var defaultLanguageId: LanguageId = LanguageEnglish
         set(value) {
-            config.fallbackSource.setLanguageId(value)
-            config.defaultLanguageId = value
+            repository.fallback.setLanguageId(value)
+            field = value
         }
+
+    init {
+        val config = SeahorseConfig.Builder()
+            .apply(configBuilder)
+            .build()
+        repository = StringsRepository(
+            config.fallbackSource,
+            config.localStore,
+            config.networkSource,
+        )
+        cacheInterval = config.cacheInterval
+        defaultLanguageId = config.defaultLanguageId
+    }
 
     fun getStringForLanguage(
         languageId: LanguageId,
@@ -38,27 +45,18 @@ class Seahorse(
     fun getString(
         key: String,
         vararg formatArgs: Any,
-    ): String = getStringForLanguage(config.defaultLanguageId, key, *formatArgs)
+    ): String = getStringForLanguage(defaultLanguageId, key, *formatArgs)
 
     fun getString(
         key: String,
-    ): String = getStringForLanguage(config.defaultLanguageId, key)
+    ): String = getStringForLanguage(defaultLanguageId, key)
 
     suspend fun fetchStrings(
         languageId: LanguageId,
     ): Result<Instant> {
-        val now = Clock.System.now()
-        config.localSink?.lastUpdateTime?.get(languageId)?.let {
-            if (it.plus(config.cacheInterval) > now) {
-                return Result.success(it)
-            }
-        }
-        val result = config.networkSource?.fetchStrings(languageId)
-        return if (result?.isSuccess == true) {
-            config.localSink?.storeStrings(languageId, result.getOrThrow())
-            Result.success(now)
-        } else {
-            Result.failure(result?.exceptionOrNull() ?: Exception("Failed to fetch strings"))
-        }
+        return repository.fetchStrings(
+            languageId,
+            cacheInterval,
+        )
     }
 }

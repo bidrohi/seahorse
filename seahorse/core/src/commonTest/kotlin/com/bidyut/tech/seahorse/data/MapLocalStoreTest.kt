@@ -5,21 +5,21 @@ import kotlin.test.Test
 import kotlin.test.assertEquals
 import kotlin.test.assertNull
 
-class MapLocalSourceSinkTest {
+class MapLocalStoreTest {
     @Test
     fun `ensure we can add strings works for all languages`() {
-        val sourceSink = MapLocalSourceSink()
-        assertNull(sourceSink.getStringByKey("en", "key"))
+        val store = MapLocalStore()
+        assertNull(store.getStringByKey("en", "key"))
         runBlocking {
-            sourceSink.storeStrings(
+            store.storeStrings(
                 "en",
                 mapOf(
                     "key" to "value",
                 ),
             )
         }
-        assertEquals("value", sourceSink.getStringByKey("en", "key"))
-        assertNull(sourceSink.getStringByKey("en", "missingKey"))
-        assertNull(sourceSink.getStringByKey("bn", "key"))
+        assertEquals("value", store.getStringByKey("en", "key"))
+        assertNull(store.getStringByKey("en", "missingKey"))
+        assertNull(store.getStringByKey("bn", "key"))
     }
 }

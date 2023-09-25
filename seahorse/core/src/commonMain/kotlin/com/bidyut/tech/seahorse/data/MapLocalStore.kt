@@ -5,17 +5,22 @@ import com.bidyut.tech.seahorse.utils.formatString
 import kotlinx.datetime.Clock
 import kotlinx.datetime.Instant
 
-class MapLocalSourceSink : LocalSink, LocalSource {
+class MapLocalStore : LocalStore {
     private val stringMapByLanguage = mutableMapOf<LanguageId, Map<String, String>>()
-    private val _lastUpdateTime = mutableMapOf<LanguageId, Instant>()
-    override val lastUpdateTime = _lastUpdateTime
+    private val lastUpdatedTime = mutableMapOf<LanguageId, Instant>()
+
+    override fun getLastUpdatedTime(
+        languageId: LanguageId
+    ): Instant? {
+        return lastUpdatedTime[languageId]
+    }
 
     override suspend fun storeStrings(
         languageId: LanguageId,
         strings: Map<String, String>
     ): Result<Boolean> {
         stringMapByLanguage[languageId] = strings
-        lastUpdateTime[languageId] = Clock.System.now()
+        lastUpdatedTime[languageId] = Clock.System.now()
         return Result.success(true)
     }
 

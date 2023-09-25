@@ -12,7 +12,7 @@ fun Seahorse.schedule(
     RefreshStringsWorker.schedule(
         workManager,
         workerClass,
-        config.cacheInterval,
+        cacheInterval,
         languages,
     )
 }
