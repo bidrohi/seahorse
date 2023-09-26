@@ -52,6 +52,7 @@ kotlin {
                 implementation(libs.ktor.client.android)
                 implementation(libs.okhttp.core)
                 implementation(libs.androidx.work.runtime)
+                implementation(libs.androidx.preferences)
             }
         }
         val androidUnitTest by getting {

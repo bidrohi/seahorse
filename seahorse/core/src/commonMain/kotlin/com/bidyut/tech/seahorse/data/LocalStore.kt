@@ -8,7 +8,7 @@ interface LocalStore {
         languageId: LanguageId
     ): Instant?
 
-    suspend fun storeStrings(
+    suspend fun replaceStrings(
         languageId: LanguageId,
         strings: Map<String, String>,
     ): Result<Boolean>

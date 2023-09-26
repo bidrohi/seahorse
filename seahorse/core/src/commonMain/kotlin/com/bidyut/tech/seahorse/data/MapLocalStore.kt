@@ -15,7 +15,7 @@ class MapLocalStore : LocalStore {
         return lastUpdatedTime[languageId]
     }
 
-    override suspend fun storeStrings(
+    override suspend fun replaceStrings(
         languageId: LanguageId,
         strings: Map<String, String>
     ): Result<Boolean> {

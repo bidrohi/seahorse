@@ -35,7 +35,7 @@ class StringsRepositoryTest {
         )
         val localStore = MapLocalStore()
         runBlocking {
-            localStore.storeStrings("en", mapOf("key" to "store value"))
+            localStore.replaceStrings("en", mapOf("key" to "store value"))
         }
         val repository = StringsRepository(fallback, localStore, null)
         assertEquals("store value", repository.getStringByKey("en", "key"))

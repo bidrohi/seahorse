@@ -11,7 +11,7 @@ class MapLocalStoreTest {
         val store = MapLocalStore()
         assertNull(store.getStringByKey("en", "key"))
         runBlocking {
-            store.storeStrings(
+            store.replaceStrings(
                 "en",
                 mapOf(
                     "key" to "value",
@@ -21,5 +21,29 @@ class MapLocalStoreTest {
         assertEquals("value", store.getStringByKey("en", "key"))
         assertNull(store.getStringByKey("en", "missingKey"))
         assertNull(store.getStringByKey("bn", "key"))
+    }
+
+    @Test
+    fun `ensure we actually replace strings`() {
+        val store = MapLocalStore()
+        assertNull(store.getStringByKey("en", "key"))
+        runBlocking {
+            store.replaceStrings(
+                "en",
+                mapOf(
+                    "key" to "value",
+                ),
+            )
+        }
+        assertEquals("value", store.getStringByKey("en", "key"))
+        runBlocking {
+            store.replaceStrings(
+                "en",
+                mapOf(
+                    "key" to "value2",
+                ),
+            )
+        }
+        assertEquals("value2", store.getStringByKey("en", "key"))
     }
 }
