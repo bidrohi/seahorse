@@ -26,7 +26,7 @@ class AppGraph {
         self.stringKeys = stringKeys
         self.seahorse = Seahorse { b in
             b.fallbackSource = NSLocalizedFallbackSource(rootBundle: Bundle.main, tableName: nil)
-            b.localStore = MapLocalStore()
+            b.localStore = NativeSqliteLocalStore()
             b.networkSource = DarwinKtorNetworkSource(getUrlForLanguageId: { languageId in
                 "https://www.bidyut.com/tech/seahorse/sample/\(languageId.lowercased()).json"
             })

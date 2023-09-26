@@ -4,7 +4,7 @@ import android.annotation.SuppressLint
 import android.content.Context
 import com.bidyut.tech.seahorse.Seahorse
 import com.bidyut.tech.seahorse.data.AndroidKtorNetworkSource
-import com.bidyut.tech.seahorse.data.MapLocalStore
+import com.bidyut.tech.seahorse.data.AndroidSqliteLocalStore
 import com.bidyut.tech.seahorse.data.ResourceFallbackSource
 
 class AppGraph(
@@ -21,7 +21,7 @@ class AppGraph(
     val seahorse: Seahorse by lazy {
         Seahorse {
             fallbackSource = ResourceFallbackSource(context)
-            localStore = MapLocalStore()
+            localStore = AndroidSqliteLocalStore(context)
             networkSource = AndroidKtorNetworkSource { languageId ->
                 "https://www.bidyut.com/tech/seahorse/sample/${languageId.lowercase()}.json"
             }

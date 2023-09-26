@@ -1,0 +1,38 @@
+-- strings
+CREATE TABLE StringEntity (
+    id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+    languageId TEXT NOT NULL,
+    key TEXT NOT NULL,
+    stringValue TEXT NOT NULL
+);
+
+CREATE UNIQUE INDEX idx_languageId_key ON StringEntity(languageId, key);
+
+insertString:
+    INSERT OR REPLACE INTO StringEntity(languageId, key, stringValue)
+    VALUES(:languageId, :key, :value);
+
+selectStringsByLanguageAndKey:
+    SELECT *
+    FROM StringEntity
+    WHERE languageId = :languageId AND key = :key;
+
+removeAllStringsForLanguage:
+    DELETE
+    FROM StringEntity
+    WHERE languageId = :languageId;
+
+-- strings update time
+CREATE TABLE StringUpdateEntity (
+    languageId TEXT NOT NULL PRIMARY KEY,
+    updatedAt TEXT NOT NULL
+);
+
+insertStringUpdate:
+    INSERT OR REPLACE INTO StringUpdateEntity(languageId, updatedAt)
+    VALUES(:languageId, :updatedAt);
+
+selectUpdatedAtForLanguage:
+    SELECT *
+    FROM StringUpdateEntity
+    WHERE languageId = :languageId;

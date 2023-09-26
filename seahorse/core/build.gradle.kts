@@ -4,6 +4,7 @@ plugins {
     alias(libs.plugins.kotlin.multiplatform)
     alias(libs.plugins.android.library)
     alias(libs.plugins.kotlinx.kover)
+    alias(libs.plugins.sqldelight)
 }
 
 @OptIn(org.jetbrains.kotlin.gradle.ExperimentalKotlinGradlePluginApi::class)
@@ -39,6 +40,7 @@ kotlin {
                 implementation(libs.ktor.client.encoding)
                 implementation(libs.ktor.client.contentNavigation)
                 implementation(libs.ktor.serialization.json)
+                implementation(libs.sqldelight.runtime)
             }
         }
         val commonTest by getting {
@@ -53,6 +55,7 @@ kotlin {
                 implementation(libs.okhttp.core)
                 implementation(libs.androidx.work.runtime)
                 implementation(libs.androidx.preferences)
+                implementation(libs.sqldelight.android)
             }
         }
         val androidUnitTest by getting {
@@ -63,6 +66,7 @@ kotlin {
         val iosMain by getting {
             dependencies {
                 implementation(libs.ktor.client.darwin)
+                implementation(libs.sqldelight.native)
             }
         }
     }
@@ -77,5 +81,13 @@ android {
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_1_8
         targetCompatibility = JavaVersion.VERSION_1_8
+    }
+}
+
+sqldelight {
+    databases {
+        create("SeahorseStrings") {
+            packageName.set("com.bidyut.tech.seahorse.data.sql")
+        }
     }
 }
