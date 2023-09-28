@@ -22,7 +22,12 @@ class ResourceFallbackSource(
         key: String,
         vararg formatArgs: Any,
     ): String? {
-        val stringRes = context.resources.getIdentifier(key, "string", appContext.packageName)
+        val sanitisedKey = key.replace("-", "_")
+        val stringRes = context.resources.getIdentifier(
+            sanitisedKey,
+            "string",
+            appContext.packageName,
+        )
         return if (stringRes != 0) {
             return context.getString(stringRes, *formatArgs)
         } else null
