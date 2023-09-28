@@ -10,6 +10,17 @@ import platform.Foundation.NSDate
 import platform.Foundation.NSTimeInterval
 import kotlin.coroutines.cancellation.CancellationException
 
+fun Seahorse.getStringForLanguage(
+    languageId: LanguageId,
+    key: String,
+    args: List<Any>,
+): String = getStringForLanguage(languageId, key, *args.toTypedArray())
+
+fun Seahorse.getString(
+    key: String,
+    args: List<Any>,
+): String = getStringForLanguage(defaultLanguageId, key, args)
+
 class FetchStringsFailureException(
     cause: Throwable? = null,
 ) : Exception("Failed to fetch strings", cause)
