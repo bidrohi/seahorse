@@ -4,6 +4,7 @@ import android.content.Context
 import androidx.work.Constraints
 import androidx.work.ExistingPeriodicWorkPolicy
 import androidx.work.NetworkType
+import androidx.work.Operation
 import androidx.work.PeriodicWorkRequest
 import androidx.work.WorkManager
 import androidx.work.Worker
@@ -51,7 +52,7 @@ abstract class RefreshStringsWorker(
             workerClass: Class<out RefreshStringsWorker>,
             refreshInterval: Duration,
             languages: Array<String>,
-        ) {
+        ): Operation {
             val request = PeriodicWorkRequest.Builder(
                 workerClass,
                 refreshInterval.inWholeMinutes,
@@ -65,7 +66,7 @@ abstract class RefreshStringsWorker(
                     KEY_LANGUAGES to languages,
                 )
             ).build()
-            workManager.enqueueUniquePeriodicWork(
+            return workManager.enqueueUniquePeriodicWork(
                 NAME,
                 ExistingPeriodicWorkPolicy.KEEP,
                 request,
