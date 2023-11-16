@@ -7,13 +7,25 @@ import platform.Foundation.NSBundle
 class NSLocalizedFallbackSource(
     private val rootBundle: NSBundle = NSBundle.mainBundle,
     private val tableName: String? = null,
-): FallbackSource {
+    private val getPathForLanguageId: (LanguageId) -> String = { it },
+) : FallbackSource {
     private var bundle = rootBundle
+
+    constructor() : this(NSBundle.mainBundle)
+
+    constructor(
+        rootBundle: NSBundle,
+    ) : this(rootBundle, null)
+
+    constructor(
+        rootBundle: NSBundle,
+        tableName: String? = null,
+    ) : this(rootBundle, tableName, { it })
 
     override fun setLanguageId(
         languageId: LanguageId,
     ) {
-        rootBundle.pathForResource(languageId, "lproj")?.let { path ->
+        rootBundle.pathForResource(getPathForLanguageId(languageId), "lproj")?.let { path ->
             NSBundle.bundleWithPath(path)?.let {
                 bundle = it
             }
