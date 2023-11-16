@@ -33,8 +33,8 @@ kotlin {
     sourceSets {
         val commonMain by getting {
             dependencies {
-                implementation(libs.kotlin.datetime)
-                implementation(libs.kotlin.serialization.json)
+                implementation(libs.kotlinx.datetime)
+                implementation(libs.kotlinx.serialization.json)
                 implementation(libs.ktor.client.core)
                 implementation(libs.ktor.client.encoding)
                 implementation(libs.ktor.client.contentNavigation)
@@ -64,6 +64,7 @@ kotlin {
         }
         val iosMain by getting {
             dependencies {
+                implementation(libs.kotlinx.coroutines)
                 implementation(libs.ktor.client.darwin)
                 implementation(libs.sqldelight.native)
             }

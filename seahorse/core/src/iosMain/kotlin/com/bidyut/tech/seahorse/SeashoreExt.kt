@@ -1,6 +1,7 @@
 package com.bidyut.tech.seahorse
 
 import com.bidyut.tech.seahorse.model.LanguageId
+import kotlinx.cinterop.ExperimentalForeignApi
 import kotlinx.coroutines.runBlocking
 import kotlinx.datetime.Clock
 import kotlinx.datetime.toNSDate
@@ -57,6 +58,7 @@ fun Seahorse.getCacheInterval(): NSTimeInterval {
 
 const val REFRESH_STRINGS_BACKGROUND_TASK_ID = "com.bidyut.tech.seahorse.refreshStrings"
 
+@OptIn(ExperimentalForeignApi::class)
 fun Seahorse.schedule(): Boolean {
     val request = BGAppRefreshTaskRequest(REFRESH_STRINGS_BACKGROUND_TASK_ID)
     request.earliestBeginDate = (Clock.System.now() + cacheInterval).toNSDate()
