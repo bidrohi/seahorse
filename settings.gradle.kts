@@ -13,7 +13,7 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "Seahorse"
+rootProject.name = "Seahorse Library"
 
 include(":androidExample")
 include(":seahorse:core")
