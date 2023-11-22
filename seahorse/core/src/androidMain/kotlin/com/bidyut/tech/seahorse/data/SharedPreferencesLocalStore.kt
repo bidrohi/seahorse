@@ -8,6 +8,7 @@ import com.bidyut.tech.seahorse.utils.formatString
 import kotlinx.datetime.Clock
 import kotlinx.datetime.Instant
 import kotlinx.datetime.toInstant
+import org.jetbrains.annotations.TestOnly
 
 class SharedPreferencesLocalStore(
     private val context: Context,
@@ -45,8 +46,8 @@ class SharedPreferencesLocalStore(
             for (entry in strings) {
                 putString(entry.key, entry.value)
             }
-            updateLastUpdateTime(languageId)
         }
+        updateLastUpdateTime(languageId)
         return Result.success(true)
     }
 
@@ -57,6 +58,17 @@ class SharedPreferencesLocalStore(
     ): String? {
         return getPreferences(languageId).getString(key, null)?.let {
             formatString(it, *formatArgs)
+        }
+    }
+
+    @TestOnly
+    fun clear(
+        vararg languageIds: LanguageId,
+    ) {
+        for (languageId in languageIds) {
+            getPreferences(languageId).edit {
+                clear()
+            }
         }
     }
 

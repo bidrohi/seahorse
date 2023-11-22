@@ -59,7 +59,8 @@ kotlin {
         }
         val androidUnitTest by getting {
             dependencies {
-                implementation(libs.androidx.work.test)
+                implementation(libs.test.robolectric)
+                implementation(libs.androidx.test.work)
             }
         }
         val iosMain by getting {
