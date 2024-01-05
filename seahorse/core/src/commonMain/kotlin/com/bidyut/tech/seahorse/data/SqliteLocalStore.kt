@@ -3,6 +3,7 @@ package com.bidyut.tech.seahorse.data
 import com.bidyut.tech.seahorse.data.sql.DatabaseDriverFactory
 import com.bidyut.tech.seahorse.data.sql.StringsDatabase
 import com.bidyut.tech.seahorse.model.LanguageId
+import com.bidyut.tech.seahorse.utils.formatString
 import kotlinx.datetime.Instant
 
 open class SqliteLocalStore(
@@ -35,6 +36,8 @@ open class SqliteLocalStore(
         key: String,
         vararg formatArgs: Any
     ): String? {
-        return database.getStringByKey(languageId, key)
+        return database.getStringByKey(languageId, key)?.let {
+            formatString(it, *formatArgs)
+        }
     }
 }
