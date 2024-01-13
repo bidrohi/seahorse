@@ -24,6 +24,7 @@ ktor = "2.3.11"
 nsexception = "1.0.0-BETA-3"
 okhttp-bom = "4.12.0"
 sqldelight = "2.0.2"
+test-mockk = "1.13.11"
 test-robolectric = "4.12.1"
 vanniktech-publish = "0.28.0"
 
@@ -71,6 +72,7 @@ test-androidx-junit = { group = "androidx.test.ext", name = "junit", version.ref
 test-androidx-monitor = { group = "androidx.test", name = "monitor", version.ref = "androidx-test-monitor" }
 test-androidx-work = { group = "androidx.work", name = "work-testing", version.ref = "androidx-work" }
 test-kotlin = { group = "org.jetbrains.kotlin", name = "kotlin-test", version.ref = "kotlin" }
+test-mockk = { module = "io.mockk:mockk", version.ref = "test-mockk" }
 test-robolectric = { group = "org.robolectric", name = "robolectric", version.ref = "test-robolectric" }
 
 [plugins]

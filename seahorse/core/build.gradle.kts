@@ -64,6 +64,7 @@ kotlin {
         androidUnitTest.dependencies {
             implementation(libs.test.robolectric)
             implementation(libs.test.androidx.work)
+            implementation(libs.test.mockk)
         }
         appleMain.dependencies {
             api(libs.nsexception)
