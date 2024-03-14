@@ -24,7 +24,7 @@ open class SqliteLocalStore(
         strings: Map<String, String>
     ): Result<Boolean> {
         return try {
-            database.replaceStrings(languageId, strings)
+            database.replaceStrings(languageId, strings.mapValues { sanitiseString(it.value) })
             Result.success(true)
         } catch (e: Exception) {
             Result.failure(e)
@@ -40,4 +40,6 @@ open class SqliteLocalStore(
             formatString(it, *formatArgs)
         }
     }
+
+    protected open fun sanitiseString(string: String) = string
 }

@@ -20,7 +20,7 @@ fun Seahorse.getStringForLanguage(
 fun Seahorse.getString(
     key: String,
     args: List<Any>,
-): String = getStringForLanguage(defaultLanguageId, key, args)
+): String = getStringForLanguage(defaultLanguageId, key, *args.toTypedArray())
 
 class FetchStringsFailureException(
     cause: Throwable? = null,
