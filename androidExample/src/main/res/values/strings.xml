@@ -7,4 +7,5 @@
     <string name="foundation">Foundation</string>
     <string name="dune">DUNE</string>
     <string name="three_body_problem">Three Body Problem</string>
+    <string name="platform">Local %1$s</string>
 </resources>

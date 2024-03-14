@@ -8,6 +8,7 @@ import com.bidyut.tech.seahorse.example.di.AppGraph
 import com.bidyut.tech.seahorse.example.ui.TriggerEffectViewModel
 import com.bidyut.tech.seahorse.model.LanguageEnglish
 import com.bidyut.tech.seahorse.model.LanguageId
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.datetime.Instant
 
@@ -49,7 +50,7 @@ class StringListViewModel(
     private fun fetchStrings(
         languageId: LanguageId,
     ) {
-        viewModelScope.launch {
+        viewModelScope.launch(Dispatchers.IO) {
             setState {
                 StringListContract.UiState.Connecting
             }

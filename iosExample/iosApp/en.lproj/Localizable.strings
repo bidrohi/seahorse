@@ -10,3 +10,4 @@
 "foundation" = "Foundation";
 "dune" = "DUNE";
 "three_body_problem" = "Three Body Problem";
+"platform" = "Local %@";

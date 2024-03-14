@@ -122,7 +122,11 @@ fun ExampleStringList(
     ) {
         items(viewModel.stringKeys) {
             StringRow(key = it,
-                value = viewModel.seahorse.getString(it),
+                value = if (it == "platform") {
+                    viewModel.seahorse.getString(it, "Android")
+                } else {
+                    viewModel.seahorse.getString(it)
+                },
                 modifier = Modifier.clickable {
                     onItemClick(it)
                 })

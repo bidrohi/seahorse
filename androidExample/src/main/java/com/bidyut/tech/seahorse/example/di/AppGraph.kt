@@ -13,6 +13,7 @@ class AppGraph(
     val stringKeys = listOf(
         "hello",
         "world",
+        "platform",
         "foundation",
         "dune",
         "three_body_problem",

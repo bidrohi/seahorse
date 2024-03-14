@@ -27,9 +27,14 @@ struct StringListScreen: View {
             }
             LazyVStack {
                 ForEach(viewModel.stringKeys, id: \.self) { key in
-                    Text(key)
-                    let str = viewModel.seahorse.getString(key: key)
-                    Text(str)
+                    VStack {
+                        Text(key)
+                        if key == "platform" {
+                            Text(viewModel.seahorse.getString(key: key, args: ["iOS"]))
+                        } else {
+                            Text(viewModel.seahorse.getString(key: key))
+                        }
+                    }
                     Divider()
                 }
             }

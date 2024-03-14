@@ -19,6 +19,7 @@ class AppGraph {
         let stringKeys = [
             "hello",
             "world",
+            "platform",
             "foundation",
             "dune",
             "three_body_problem",
