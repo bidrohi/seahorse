@@ -41,7 +41,7 @@ suspend fun Seahorse.fetchStringsAsync(
 fun Seahorse.refreshStrings(
     languages: List<LanguageId>,
 ): Boolean {
-    return runBlocking {
+    return runBlocking(Dispatchers.IO) {
         for (language in languages) {
             val result = fetchStrings(language)
             if (result.isFailure) {
@@ -59,20 +59,26 @@ fun Seahorse.getCacheInterval(): NSTimeInterval {
 const val REFRESH_STRINGS_BACKGROUND_TASK_ID = "com.bidyut.tech.seahorse.refreshStrings"
 
 @OptIn(ExperimentalForeignApi::class)
-fun Seahorse.schedule(): Boolean {
+fun Seahorse.schedule(
+    canRunImmediately: Boolean,
+): Boolean {
     val request = BGAppRefreshTaskRequest(REFRESH_STRINGS_BACKGROUND_TASK_ID)
-    request.earliestBeginDate = (Clock.System.now() + cacheInterval).toNSDate()
+    val runDelay = if (canRunImmediately) 30.seconds else cacheInterval
+    request.earliestBeginDate = (Clock.System.now() + runDelay).toNSDate()
     return BGTaskScheduler.sharedScheduler().submitTaskRequest(request, null)
 }
 
+fun Seahorse.schedule() = schedule(false)
+
 fun Seahorse.registerBackgroundTask(
     languages: List<LanguageId>,
+    canRunImmediately: Boolean,
 ) {
     BGTaskScheduler.sharedScheduler().registerForTaskWithIdentifier(
         REFRESH_STRINGS_BACKGROUND_TASK_ID,
         null,
     ) { task ->
         task?.setTaskCompletedWithSuccess(refreshStrings(languages))
-        schedule()
+        schedule(canRunImmediately)
     }
 }
