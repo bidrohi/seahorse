@@ -1,7 +1,11 @@
+@file:OptIn(ExperimentalObjCName::class)
+
 package com.bidyut.tech.seahorse
 
 import com.bidyut.tech.seahorse.model.LanguageId
 import kotlinx.cinterop.ExperimentalForeignApi
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.IO
 import kotlinx.coroutines.runBlocking
 import kotlinx.datetime.Clock
 import kotlinx.datetime.toNSDate
@@ -10,14 +14,19 @@ import platform.BackgroundTasks.BGTaskScheduler
 import platform.Foundation.NSDate
 import platform.Foundation.NSTimeInterval
 import kotlin.coroutines.cancellation.CancellationException
+import kotlin.experimental.ExperimentalObjCName
+import kotlin.time.Duration.Companion.seconds
 
 fun Seahorse.getStringForLanguage(
+    @ObjCName("_")
     languageId: LanguageId,
+    @ObjCName("_")
     key: String,
     args: List<Any>,
 ): String = getStringForLanguage(languageId, key, *args.toTypedArray())
 
 fun Seahorse.getString(
+    @ObjCName("_")
     key: String,
     args: List<Any>,
 ): String = getStringForLanguage(defaultLanguageId, key, *args.toTypedArray())
@@ -28,6 +37,7 @@ class FetchStringsFailureException(
 
 @Throws(CancellationException::class, FetchStringsFailureException::class)
 suspend fun Seahorse.fetchStringsAsync(
+    @ObjCName("_")
     languageId: LanguageId,
 ): NSDate {
     val result = fetchStrings(languageId)
@@ -39,6 +49,7 @@ suspend fun Seahorse.fetchStringsAsync(
 }
 
 fun Seahorse.refreshStrings(
+    @ObjCName("_")
     languages: List<LanguageId>,
 ): Boolean {
     return runBlocking(Dispatchers.IO) {
@@ -71,6 +82,7 @@ fun Seahorse.schedule(
 fun Seahorse.schedule() = schedule(false)
 
 fun Seahorse.registerBackgroundTask(
+    @ObjCName("_")
     languages: List<LanguageId>,
     canRunImmediately: Boolean,
 ) {
@@ -82,3 +94,8 @@ fun Seahorse.registerBackgroundTask(
         schedule(canRunImmediately)
     }
 }
+
+fun Seahorse.registerBackgroundTask(
+    @ObjCName("_")
+    languages: List<LanguageId>,
+)  = registerBackgroundTask(languages, false)

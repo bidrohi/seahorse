@@ -3,8 +3,11 @@ package com.bidyut.tech.seahorse.data
 import com.bidyut.tech.seahorse.model.LanguageId
 import com.bidyut.tech.seahorse.utils.formatString
 import platform.Foundation.NSBundle
+import kotlin.experimental.ExperimentalObjCName
 
+@OptIn(ExperimentalObjCName::class)
 class NSLocalizedFallbackSource(
+    @ObjCName("_")
     private val rootBundle: NSBundle = NSBundle.mainBundle,
     private val tableName: String? = null,
     private val getPathForLanguageId: (LanguageId) -> String = { it },
