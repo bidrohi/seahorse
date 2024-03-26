@@ -45,6 +45,18 @@ class StringsDatabase(
         }
     }
 
+    internal suspend fun clearStore(
+        languageId: LanguageId,
+    ) = withContext(dispatcher) {
+        dbQuery.transaction {
+            dbQuery.removeAllStringsForLanguage(languageId)
+            dbQuery.insertStringUpdate(
+                languageId,
+                Instant.DISTANT_PAST.toString()
+            )
+        }
+    }
+
     internal fun getStringByKey(
         languageId: LanguageId,
         key: String,

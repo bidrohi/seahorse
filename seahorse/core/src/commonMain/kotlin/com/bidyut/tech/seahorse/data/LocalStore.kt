@@ -13,6 +13,10 @@ interface LocalStore {
         strings: Map<String, String>,
     ): Result<Boolean>
 
+    suspend fun clearStore(
+        languageId: LanguageId,
+    ): Result<Boolean>
+
     fun getStringByKey(
         languageId: LanguageId,
         key: String,

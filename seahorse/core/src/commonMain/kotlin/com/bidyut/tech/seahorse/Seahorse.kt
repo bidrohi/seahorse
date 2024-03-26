@@ -74,4 +74,10 @@ class Seahorse(
             cacheInterval,
         )
     }
+
+    @ShouldRefineInSwift
+    suspend fun clearStore(
+        @ObjCName("_")
+        languageId: LanguageId,
+    ) = repository.clearStore(languageId)
 }

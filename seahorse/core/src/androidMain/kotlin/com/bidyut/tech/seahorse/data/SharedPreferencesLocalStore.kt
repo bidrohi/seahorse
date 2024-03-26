@@ -51,6 +51,15 @@ class SharedPreferencesLocalStore(
         return Result.success(true)
     }
 
+    override suspend fun clearStore(
+        languageId: LanguageId,
+    ): Result<Boolean> {
+        getPreferences(languageId).edit {
+            clear()
+        }
+        return Result.success(true)
+    }
+
     override fun getStringByKey(
         languageId: LanguageId,
         key: String,

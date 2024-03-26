@@ -12,6 +12,7 @@ import kotlinx.datetime.toNSDate
 import platform.BackgroundTasks.BGAppRefreshTaskRequest
 import platform.BackgroundTasks.BGTaskScheduler
 import platform.Foundation.NSDate
+import platform.Foundation.NSNumber
 import platform.Foundation.NSTimeInterval
 import kotlin.coroutines.cancellation.CancellationException
 import kotlin.experimental.ExperimentalObjCName
@@ -46,6 +47,19 @@ suspend fun Seahorse.fetchStringsAsync(
     } else {
         throw FetchStringsFailureException(result.exceptionOrNull())
     }
+}
+
+@Throws(CancellationException::class)
+suspend fun Seahorse.clearStoreAsync(
+    @ObjCName("_")
+    languageId: LanguageId,
+): NSNumber {
+    val result = clearStore(languageId)
+    return NSNumber(if (result.isSuccess) {
+        result.getOrThrow()
+    } else {
+        false
+    })
 }
 
 fun Seahorse.refreshStrings(

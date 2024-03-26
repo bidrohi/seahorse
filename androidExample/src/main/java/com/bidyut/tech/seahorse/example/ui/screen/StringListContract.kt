@@ -13,6 +13,10 @@ interface StringListContract {
             val languageId: LanguageId,
         ) : Trigger
 
+        data class ClearStore(
+            val languageId: LanguageId,
+        ) : Trigger
+
         data class StringClicked(
             val key: String,
         ) : Trigger
@@ -24,7 +28,7 @@ interface StringListContract {
             val lastUpdatedTime: Instant = Instant.DISTANT_PAST,
         ) : UiState
 
-        object Connecting : UiState
+        data object Connecting : UiState
 
         data class Error(
             val message: String,

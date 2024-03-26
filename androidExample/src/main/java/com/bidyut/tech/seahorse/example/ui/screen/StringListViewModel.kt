@@ -29,6 +29,7 @@ class StringListViewModel(
         when (trigger) {
             is StringListContract.Trigger.LanguageChanged -> changeLanguage(trigger.languageId)
             is StringListContract.Trigger.FetchStringList -> fetchStrings(trigger.languageId)
+            is StringListContract.Trigger.ClearStore -> clearStore(trigger.languageId)
             is StringListContract.Trigger.StringClicked -> copyKeyToClipboard(trigger.key)
         }
     }
@@ -66,7 +67,34 @@ class StringListViewModel(
                 onFailure = { error ->
                     setState {
                         StringListContract.UiState.Error(
-                            message = error.message ?: "Unknown error",
+                            message = error.message ?: "Unknown error on fetch",
+                        )
+                    }
+                },
+            )
+        }
+    }
+
+    private fun clearStore(
+        languageId: LanguageId,
+    ) {
+        viewModelScope.launch(Dispatchers.IO) {
+            setState {
+                StringListContract.UiState.Connecting
+            }
+            seahorse.clearStore(languageId).fold(
+                onSuccess = {
+                    setState {
+                        StringListContract.UiState.StatusQuo(
+                            languageId = languageId,
+                            lastUpdatedTime = Instant.DISTANT_PAST,
+                        )
+                    }
+                },
+                onFailure = { error ->
+                    setState {
+                        StringListContract.UiState.Error(
+                            message = error.message ?: "Unknown error on clear",
                         )
                     }
                 },

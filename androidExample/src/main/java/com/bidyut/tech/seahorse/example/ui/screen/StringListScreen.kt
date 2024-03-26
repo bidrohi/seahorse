@@ -89,6 +89,15 @@ fun StringListScreen(
                     ) {
                         Text(text = "Fetch ${state.languageId}")
                     }
+                    OutlinedButton(
+                        onClick = {
+                            viewModel.sendTrigger(
+                                StringListContract.Trigger.ClearStore(state.languageId),
+                            )
+                        },
+                    ) {
+                        Text(text = "Clear ${state.languageId}")
+                    }
                 }
                 ExampleStringList(
                     viewModel = viewModel,

@@ -36,4 +36,10 @@ class StringsRepository(
             Result.failure(result?.exceptionOrNull() ?: Exception("Failed to fetch strings"))
         }
     }
+
+    suspend fun clearStore(
+        languageId: LanguageId,
+    ): Result<Boolean> {
+        return localStore?.clearStore(languageId) ?: Result.success(true)
+    }
 }

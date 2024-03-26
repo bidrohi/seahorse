@@ -24,6 +24,11 @@ struct StringListScreen: View {
                 }
                 .padding()
                 .border(Color.blue, width: 4)
+                Button("Clear \(viewModel.languageId)") {
+                    viewModel.clearStore(viewModel.languageId)
+                }
+                .padding()
+                .border(Color.blue, width: 4)
             }
             LazyVStack {
                 ForEach(viewModel.stringKeys, id: \.self) { key in

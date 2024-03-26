@@ -31,6 +31,17 @@ open class SqliteLocalStore(
         }
     }
 
+    override suspend fun clearStore(
+        languageId: LanguageId,
+    ): Result<Boolean> {
+        return try {
+            database.clearStore(languageId)
+            Result.success(true)
+        } catch (e: Exception) {
+            Result.failure(e)
+        }
+    }
+
     override fun getStringByKey(
         languageId: LanguageId,
         key: String,

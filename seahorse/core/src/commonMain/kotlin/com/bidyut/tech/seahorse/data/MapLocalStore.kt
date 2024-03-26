@@ -24,6 +24,12 @@ class MapLocalStore : LocalStore {
         return Result.success(true)
     }
 
+    override suspend fun clearStore(languageId: LanguageId): Result<Boolean> {
+        stringMapByLanguage.remove(languageId)
+        lastUpdatedTime.remove(languageId)
+        return Result.success(true)
+    }
+
     override fun getStringByKey(
         languageId: LanguageId,
         key: String,
