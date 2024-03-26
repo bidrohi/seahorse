@@ -36,6 +36,8 @@ struct StringListScreen: View {
                         Text(key)
                         if key == "platform" {
                             Text(viewModel.seahorse.getString(key, args: ["iOS"]))
+                        } else if key == "sentence_structure" {
+                            Text(viewModel.seahorse.getString(key, args: ["Seahorse", "gives", "strings"]))
                         } else {
                             Text(viewModel.seahorse.getString(key))
                         }

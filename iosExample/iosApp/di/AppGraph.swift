@@ -20,6 +20,7 @@ class AppGraph {
             "hello",
             "world",
             "platform",
+            "sentence_structure",
             "foundation",
             "dune",
             "three_body_problem",

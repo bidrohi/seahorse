@@ -11,3 +11,4 @@
 "dune" = "DUNE";
 "three_body_problem" = "Three Body Problem";
 "platform" = "Local %@";
+"sentence_structure" = "%1$@ %2$@ %3$@";

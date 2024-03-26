@@ -11,3 +11,4 @@
 "dune" = "টিলা";
 "three_body_problem" = "থ্রি বডি প্রবলেম";
 "platform" = "স্থানীয় %@";
+"sentence_structure" = "%1$@ %3$@ %2$@";
