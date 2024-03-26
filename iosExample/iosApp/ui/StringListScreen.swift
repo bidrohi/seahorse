@@ -30,9 +30,9 @@ struct StringListScreen: View {
                     VStack {
                         Text(key)
                         if key == "platform" {
-                            Text(viewModel.seahorse.getString(key: key, args: ["iOS"]))
+                            Text(viewModel.seahorse.getString(key, args: ["iOS"]))
                         } else {
-                            Text(viewModel.seahorse.getString(key: key))
+                            Text(viewModel.seahorse.getString(key))
                         }
                     }
                     Divider()

@@ -64,7 +64,9 @@ class Seahorse(
         key: String,
     ): String = getStringForLanguage(defaultLanguageId, key)
 
+    @ShouldRefineInSwift
     suspend fun fetchStrings(
+        @ObjCName("_")
         languageId: LanguageId,
     ): Result<Instant> {
         return repository.fetchStrings(
