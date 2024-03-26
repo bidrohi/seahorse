@@ -3,6 +3,9 @@ package com.bidyut.tech.seahorse
 import com.bidyut.tech.seahorse.data.StringsRepository
 import com.bidyut.tech.seahorse.model.LanguageEnglish
 import com.bidyut.tech.seahorse.model.LanguageId
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.IO
+import kotlinx.coroutines.runBlocking
 import kotlinx.datetime.Instant
 import kotlin.experimental.ExperimentalObjCName
 import kotlin.experimental.ExperimentalObjCRefinement
@@ -80,4 +83,34 @@ class Seahorse(
         @ObjCName("_")
         languageId: LanguageId,
     ) = repository.clearStore(languageId)
+
+    fun refreshStrings(
+        @ObjCName("_")
+        languages: List<LanguageId>,
+    ): Boolean {
+        return runBlocking(Dispatchers.IO) {
+            for (language in languages) {
+                val result = fetchStrings(language)
+                if (result.isFailure) {
+                    return@runBlocking false
+                }
+            }
+            true
+        }
+    }
+
+    fun clearStore(
+        @ObjCName("_")
+        languages: List<LanguageId>,
+    ): Boolean {
+        return runBlocking(Dispatchers.IO) {
+            for (language in languages) {
+                val result = clearStore(language)
+                if (result.isFailure) {
+                    return@runBlocking false
+                }
+            }
+            true
+        }
+    }
 }

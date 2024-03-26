@@ -4,15 +4,11 @@ package com.bidyut.tech.seahorse
 
 import com.bidyut.tech.seahorse.model.LanguageId
 import kotlinx.cinterop.ExperimentalForeignApi
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.IO
-import kotlinx.coroutines.runBlocking
 import kotlinx.datetime.Clock
 import kotlinx.datetime.toNSDate
 import platform.BackgroundTasks.BGAppRefreshTaskRequest
 import platform.BackgroundTasks.BGTaskScheduler
 import platform.Foundation.NSDate
-import platform.Foundation.NSNumber
 import platform.Foundation.NSTimeInterval
 import kotlin.coroutines.cancellation.CancellationException
 import kotlin.experimental.ExperimentalObjCName
@@ -46,34 +42,6 @@ suspend fun Seahorse.fetchStringsAsync(
         result.getOrThrow().toNSDate()
     } else {
         throw FetchStringsFailureException(result.exceptionOrNull())
-    }
-}
-
-@Throws(CancellationException::class)
-suspend fun Seahorse.clearStoreAsync(
-    @ObjCName("_")
-    languageId: LanguageId,
-): NSNumber {
-    val result = clearStore(languageId)
-    return NSNumber(if (result.isSuccess) {
-        result.getOrThrow()
-    } else {
-        false
-    })
-}
-
-fun Seahorse.refreshStrings(
-    @ObjCName("_")
-    languages: List<LanguageId>,
-): Boolean {
-    return runBlocking(Dispatchers.IO) {
-        for (language in languages) {
-            val result = fetchStrings(language)
-            if (result.isFailure) {
-                return@runBlocking false
-            }
-        }
-        true
     }
 }
 
