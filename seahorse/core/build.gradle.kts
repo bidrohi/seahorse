@@ -27,6 +27,8 @@ kotlin {
         it.binaries.framework {
             baseName = "Seahorse"
             xcf.add(this)
+            isStatic = true
+            export(libs.nsexception)
         }
     }
 
@@ -68,6 +70,7 @@ kotlin {
                 implementation(libs.kotlinx.coroutines)
                 implementation(libs.ktor.client.darwin)
                 implementation(libs.sqldelight.native)
+                api(libs.nsexception)
             }
         }
     }
