@@ -15,8 +15,6 @@ group = libNamespace
 version = libVersion
 
 kotlin {
-    applyDefaultHierarchyTemplate()
-
     androidTarget {
         publishLibraryVariants("release", "debug")
         compilations.all {
@@ -40,46 +38,44 @@ kotlin {
         }
     }
 
+    jvm("desktop")
+
     sourceSets {
-        val commonMain by getting {
-            dependencies {
-                implementation(libs.kotlinx.datetime)
-                implementation(libs.kotlinx.serialization.json)
-                implementation(libs.ktor.client.core)
-                implementation(libs.ktor.client.encoding)
-                implementation(libs.ktor.client.contentNavigation)
-                implementation(libs.ktor.serialization.json)
-                implementation(libs.sqldelight.runtime)
-            }
+        commonMain.dependencies {
+            implementation(libs.kotlinx.datetime)
+            implementation(libs.kotlinx.serialization.json)
+            implementation(libs.ktor.client.core)
+            implementation(libs.ktor.client.encoding)
+            implementation(libs.ktor.client.contentNavigation)
+            implementation(libs.ktor.serialization.json)
+            implementation(libs.sqldelight.runtime)
         }
-        val commonTest by getting {
-            dependencies {
-                implementation(libs.kotlin.test)
-                implementation(libs.ktor.client.mock)
-            }
+        commonTest.dependencies {
+            implementation(libs.kotlin.test)
+            implementation(libs.ktor.client.mock)
         }
-        val androidMain by getting {
-            dependencies {
-                implementation(libs.ktor.client.android)
-                implementation(libs.okhttp.core)
-                implementation(libs.androidx.work.runtime)
-                implementation(libs.androidx.preferences)
-                implementation(libs.sqldelight.android)
-            }
+        androidMain.dependencies {
+            implementation(libs.ktor.client.android)
+            implementation(libs.okhttp.core)
+            implementation(libs.androidx.work.runtime)
+            implementation(libs.androidx.preferences)
+            implementation(libs.sqldelight.android)
         }
-        val androidUnitTest by getting {
-            dependencies {
-                implementation(libs.test.robolectric)
-                implementation(libs.androidx.test.work)
-            }
+        val androidUnitTest by getting
+        androidUnitTest.dependencies {
+            implementation(libs.test.robolectric)
+            implementation(libs.androidx.test.work)
         }
-        val iosMain by getting {
-            dependencies {
-                implementation(libs.kotlinx.coroutines)
-                implementation(libs.ktor.client.darwin)
-                implementation(libs.sqldelight.native)
-                api(libs.nsexception)
-            }
+        iosMain.dependencies {
+            implementation(libs.kotlinx.coroutines.core)
+            implementation(libs.ktor.client.darwin)
+            implementation(libs.sqldelight.native)
+            api(libs.nsexception)
+        }
+        val desktopMain by getting
+        desktopMain.dependencies {
+            implementation(libs.ktor.client.cio)
+            implementation(libs.sqldelight.sqlite)
         }
     }
 }

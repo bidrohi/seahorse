@@ -1,0 +1,9 @@
+{
+    "sentence_structure": "%1$s %2$s %3$s",
+    "hello": "Hello",
+    "world": "World",
+    "foundation": "Foundation",
+    "dune": "DUNE",
+    "three_body_problem": "Three Body Problem",
+    "platform": "%s"
+}

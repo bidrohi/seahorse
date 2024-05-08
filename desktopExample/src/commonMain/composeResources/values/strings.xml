@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Seahorse Example</string>
+
+    <string name="hello">Hello</string>
+    <string name="world">World</string>
+    <string name="foundation">Foundation</string>
+    <string name="dune">DUNE</string>
+    <string name="three_body_problem">Three Body Problem</string>
+    <string name="platform">Local %1$s</string>
+    <string name="sentence_structure">%1$s %2$s %3$s</string>
+</resources>

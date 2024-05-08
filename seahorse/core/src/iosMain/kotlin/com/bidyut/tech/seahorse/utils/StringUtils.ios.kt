@@ -4,7 +4,9 @@ import platform.Foundation.NSString
 import platform.Foundation.stringWithFormat
 
 private val StringParamMatcher = Regex("(?<!%)%([1-9]\\$|)s")
-actual fun sanitiseFormatString(string: String): String = StringParamMatcher.replace(string) {
+actual fun sanitiseFormatString(
+    string: String,
+): String = StringParamMatcher.replace(string) {
     it.value.replace("s", "@")
 }
 

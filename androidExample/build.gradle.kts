@@ -41,6 +41,8 @@ android {
 dependencies {
     implementation(project(":seahorse:core"))
 
+    implementation(libs.kotlinx.coroutines.core)
+    implementation(libs.kotlinx.coroutines.android)
     implementation(libs.kotlinx.datetime)
     implementation(libs.androidx.work.runtime)
 
