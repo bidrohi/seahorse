@@ -46,12 +46,8 @@ class StringListViewModel: ObservableObject {
     func clearStore(
         _ languageId: String
     ) {
-        self.seahorse.clearStoreAsync(languageId) { isSuccess, error in
-            if error != nil || isSuccess == false {
-                // handle error
-            } else {
-                self.lastUpdated = Date.distantPast
-            }
+        if (self.seahorse.clearStore([languageId])) {
+            self.lastUpdated = Date.distantPast
         }
     }
 }

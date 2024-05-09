@@ -38,6 +38,7 @@
 		7555FF8C242A565B00829871 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		EA53C6132ABDFC2700A13954 /* AppGraph.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppGraph.swift; sourceTree = "<group>"; };
 		EA984A8A2ABEA4AF0083689C /* bn */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = bn; path = bn.lproj/Localizable.strings; sourceTree = "<group>"; };
+		EAAAA7912BECA7A5002EEE28 /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
 		EAF006272ABEA85C0025FC28 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		EAF0062B2ABED3F50025FC28 /* StringListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringListViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -95,6 +96,7 @@
 		7555FFB0242A642200829871 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				EAAAA7912BECA7A5002EEE28 /* libsqlite3.tbd */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -375,6 +377,7 @@
 					"$(inherited)",
 					"-framework",
 					Seahorse,
+					"-lsqlite3",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.bidyut.tech.seahorse.example;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -404,6 +407,7 @@
 					"$(inherited)",
 					"-framework",
 					Seahorse,
+					"-lsqlite3",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.bidyut.tech.seahorse.example;
 				PRODUCT_NAME = "$(TARGET_NAME)";
