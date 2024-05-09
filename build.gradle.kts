@@ -12,7 +12,7 @@ plugins {
 }
 
 val libNamespace by rootProject.extra { "com.bidyut.tech.seahorse" }
-val libVersion by rootProject.extra { "0.5.0" }
+val libVersion by rootProject.extra { "0.6.0" }
 
 tasks.register(
     "clean",
