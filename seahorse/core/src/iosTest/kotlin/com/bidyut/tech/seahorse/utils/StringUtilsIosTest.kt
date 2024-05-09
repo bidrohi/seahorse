@@ -12,11 +12,27 @@ class StringUtilsIosTest {
         )
         assertEquals(
             "Check iOS is mentioned",
-            formatString("Check %s is mentioned", "iOS")
+            formatString(sanitiseFormatString("Check %s is mentioned"), "iOS")
         )
         assertEquals(
             "Check iOS is mentioned",
-            formatString("Check %s is %s", "iOS", "mentioned")
+            formatString(sanitiseFormatString("Check %s is %s"), "iOS", "mentioned")
+        )
+        assertEquals(
+            "Check iOS is mentioned",
+            formatString(sanitiseFormatString("%s %s is %s"), "Check", "iOS", "mentioned")
+        )
+        assertEquals(
+            "Check iOS is mentioned",
+            formatString(sanitiseFormatString("%s %s is %s"), "Check", "iOS", "mentioned")
+        )
+        assertEquals(
+            "Check iOS is mentioned",
+            formatString(sanitiseFormatString("%s %s %s %s"), "Check", "iOS", "is", "mentioned")
+        )
+        assertEquals(
+            "Check iOS is mentioned here",
+            formatString(sanitiseFormatString("%s %s %s %s %s"), "Check", "iOS", "is", "mentioned", "here")
         )
     }
 }

@@ -2,6 +2,7 @@ package com.bidyut.tech.seahorse.data
 
 import com.bidyut.tech.seahorse.model.LanguageId
 import com.bidyut.tech.seahorse.utils.formatString
+import com.bidyut.tech.seahorse.utils.sanitiseFormatString
 import kotlinx.datetime.Clock
 import kotlinx.datetime.Instant
 
@@ -19,7 +20,9 @@ class MapLocalStore : LocalStore {
         languageId: LanguageId,
         strings: Map<String, String>
     ): Result<Boolean> {
-        stringMapByLanguage[languageId] = strings
+        stringMapByLanguage[languageId] = strings.mapValues {
+            sanitiseFormatString(it.value)
+        }
         lastUpdatedTime[languageId] = Clock.System.now()
         return Result.success(true)
     }

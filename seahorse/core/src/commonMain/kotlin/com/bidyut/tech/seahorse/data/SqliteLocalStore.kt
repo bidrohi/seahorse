@@ -4,6 +4,7 @@ import com.bidyut.tech.seahorse.data.sql.DatabaseDriverFactory
 import com.bidyut.tech.seahorse.data.sql.StringsDatabase
 import com.bidyut.tech.seahorse.model.LanguageId
 import com.bidyut.tech.seahorse.utils.formatString
+import com.bidyut.tech.seahorse.utils.sanitiseFormatString
 import kotlinx.datetime.Instant
 
 open class SqliteLocalStore(
@@ -24,7 +25,9 @@ open class SqliteLocalStore(
         strings: Map<String, String>
     ): Result<Boolean> {
         return try {
-            database.replaceStrings(languageId, strings.mapValues { sanitiseString(it.value) })
+            database.replaceStrings(languageId, strings.mapValues {
+                sanitiseFormatString(it.value)
+            })
             Result.success(true)
         } catch (e: Exception) {
             Result.failure(e)
@@ -51,6 +54,4 @@ open class SqliteLocalStore(
             formatString(it, *formatArgs)
         }
     }
-
-    protected open fun sanitiseString(string: String) = string
 }

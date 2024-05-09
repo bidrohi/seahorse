@@ -3,6 +3,11 @@ package com.bidyut.tech.seahorse.utils
 import platform.Foundation.NSString
 import platform.Foundation.stringWithFormat
 
+private val StringParamMatcher = Regex("(?<!%)%([1-9]\\$|)s")
+actual fun sanitiseFormatString(string: String): String = StringParamMatcher.replace(string) {
+    it.value.replace("s", "@")
+}
+
 actual fun formatString(
     fmt: String,
     vararg args: Any,
