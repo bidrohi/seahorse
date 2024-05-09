@@ -1,3 +1,4 @@
+import com.vanniktech.maven.publish.SonatypeHost
 import org.jetbrains.kotlin.gradle.plugin.mpp.apple.XCFramework
 
 plugins {
@@ -5,12 +6,19 @@ plugins {
     alias(libs.plugins.android.library)
     alias(libs.plugins.kotlinx.kover)
     alias(libs.plugins.sqldelight)
+    alias(libs.plugins.vanniktech.publish)
 }
+
+val libNamespace = rootProject.extra.get("libNamespace") as String
+val libVersion = rootProject.extra.get("libVersion") as String
+group = libNamespace
+version = libVersion
 
 kotlin {
     applyDefaultHierarchyTemplate()
 
     androidTarget {
+        publishLibraryVariants("release", "debug")
         compilations.all {
             kotlinOptions {
                 jvmTarget = JavaVersion.VERSION_1_8.toString()
@@ -94,4 +102,42 @@ sqldelight {
             packageName.set("com.bidyut.tech.seahorse.data.sql")
         }
     }
+}
+
+mavenPublishing {
+    coordinates(
+        groupId = libNamespace,
+        artifactId = project.name,
+        version = libVersion,
+    )
+
+    pom {
+        name = "Seahorse"
+        url = "https://github.com/bidrohi/seahorse"
+        inceptionYear = "2023"
+        description = """
+            Seahorse provides a simple framework to support getting strings from various sources or fallback to the ones compiled into the app.
+        """.trimIndent()
+
+        licenses {
+            license {
+                name = "CC BY-NC-SA 4.0"
+                url = "https://creativecommons.org/licenses/by-nc-sa/4.0/"
+            }
+        }
+        developers {
+            developer {
+                id = "bidrohi"
+                name = "Saud Khan"
+                url = "https://github.com/bidrohi/"
+            }
+        }
+        scm {
+            url = "https://github.com/bidrohi/seahorse"
+        }
+    }
+
+    publishToMavenCentral(SonatypeHost.CENTRAL_PORTAL)
+
+    signAllPublications()
 }

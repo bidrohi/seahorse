@@ -23,6 +23,7 @@ nsexception = "1.0.0-BETA-2"
 okhttp-bom = "4.12.0"
 sqldelight = "2.0.2"
 test-robolectric = "4.12.1"
+vanniktech-publish = "0.28.0"
 
 [libraries]
 androidx-activity = { group = "androidx.activity", name = "activity-compose", version.ref = "androidx-activity" }
@@ -72,3 +73,4 @@ kotlin-serialization = { id = "org.jetbrains.kotlin.plugin.serialization", versi
 kotlinx-kover = { id = "org.jetbrains.kotlinx.kover", version.ref = "kotlinx-kover" }
 ksp = { id = "com.google.devtools.ksp", version.ref = "ksp" }
 sqldelight = { id = "app.cash.sqldelight", version.ref = "sqldelight" }
+vanniktech-publish = { id = "com.vanniktech.maven.publish", version.ref = "vanniktech-publish" }

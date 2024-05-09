@@ -8,7 +8,11 @@ plugins {
     alias(libs.plugins.kotlinx.kover).apply(false)
     alias(libs.plugins.ksp).apply(false)
     alias(libs.plugins.sqldelight).apply(false)
+    alias(libs.plugins.vanniktech.publish).apply(false)
 }
+
+val libNamespace by rootProject.extra { "com.bidyut.tech.seahorse" }
+val libVersion by rootProject.extra { "0.5.0" }
 
 tasks.register(
     "clean",
