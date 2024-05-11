@@ -1,12 +1,12 @@
 -- strings
-CREATE TABLE StringEntity (
+CREATE TABLE IF NOT EXISTS StringEntity (
     id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
     languageId TEXT NOT NULL,
     key TEXT NOT NULL,
     stringValue TEXT NOT NULL
 );
 
-CREATE UNIQUE INDEX idx_languageId_key ON StringEntity(languageId, key);
+CREATE UNIQUE INDEX IF NOT EXISTS idx_languageId_key ON StringEntity(languageId, key);
 
 insertString:
     INSERT OR REPLACE INTO StringEntity(languageId, key, stringValue)
@@ -23,7 +23,7 @@ removeAllStringsForLanguage:
     WHERE languageId = :languageId;
 
 -- strings update time
-CREATE TABLE StringUpdateEntity (
+CREATE TABLE IF NOT EXISTS StringUpdateEntity (
     languageId TEXT NOT NULL PRIMARY KEY,
     updatedAt TEXT NOT NULL
 );

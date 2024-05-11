@@ -28,7 +28,16 @@ kotlin {
     listOf(
         iosX64(),
         iosArm64(),
-        iosSimulatorArm64()
+        iosSimulatorArm64(),
+        macosX64(),
+        macosArm64(),
+        watchosX64(),
+        watchosArm32(),
+        watchosArm64(),
+        watchosSimulatorArm64(),
+        tvosX64(),
+        tvosArm64(),
+        tvosSimulatorArm64(),
     ).forEach {
         it.binaries.framework {
             baseName = "Seahorse"
@@ -38,7 +47,7 @@ kotlin {
         }
     }
 
-    jvm("desktop")
+    jvm()
 
     sourceSets {
         commonMain.dependencies {
@@ -51,7 +60,7 @@ kotlin {
             implementation(libs.sqldelight.runtime)
         }
         commonTest.dependencies {
-            implementation(libs.kotlin.test)
+            implementation(libs.test.kotlin)
             implementation(libs.ktor.client.mock)
         }
         androidMain.dependencies {
@@ -64,16 +73,19 @@ kotlin {
         val androidUnitTest by getting
         androidUnitTest.dependencies {
             implementation(libs.test.robolectric)
-            implementation(libs.androidx.test.work)
+            implementation(libs.test.androidx.work)
         }
-        iosMain.dependencies {
+        appleMain.dependencies {
             implementation(libs.kotlinx.coroutines.core)
             implementation(libs.ktor.client.darwin)
             implementation(libs.sqldelight.native)
             api(libs.nsexception)
         }
-        val desktopMain by getting
-        desktopMain.dependencies {
+        nativeMain.dependencies {
+            implementation(libs.ktor.client.cio)
+            implementation(libs.sqldelight.native)
+        }
+        jvmMain.dependencies {
             implementation(libs.ktor.client.cio)
             implementation(libs.sqldelight.sqlite)
         }

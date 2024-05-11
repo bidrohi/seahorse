@@ -24,7 +24,9 @@ fun AppWindow(
     seahorse: Seahorse,
     stringKeys: List<String>,
 ) {
-    MyApplicationTheme {
+    MyApplicationTheme(
+        isInDarkTheme = false,
+    ) {
         Scaffold(
             modifier = Modifier.fillMaxSize(),
             topBar = {
