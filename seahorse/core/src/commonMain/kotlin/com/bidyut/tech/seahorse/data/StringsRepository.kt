@@ -33,7 +33,8 @@ internal class StringsRepository(
         val result = networkSource?.fetchStrings(languageId)
         return if (result?.isSuccess == true) {
             localStore?.replaceStrings(languageId, result.getOrThrow())
-            Result.success(now)
+                ?.map { now }
+                ?: Result.success(now)
         } else {
             Result.failure(result?.exceptionOrNull() ?: Exception("Failed to fetch strings"))
         }

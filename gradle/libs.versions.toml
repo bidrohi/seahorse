@@ -14,8 +14,10 @@ kotlinx-coroutines = "1.8.1"
 kotlinx-datetime = "0.6.0"
 kotlinx-kover = "0.8.3"
 kotlinx-serialization-json = "1.7.1"
+ksp = "2.0.0-1.0.23"
 ktor = "2.3.12"
 okhttp-bom = "4.12.0"
+realm = "2.1.0"
 sqldelight = "2.0.2"
 test-mockk = "1.13.11"
 test-robolectric = "4.12.1"
@@ -50,6 +52,7 @@ ktor-client-mock = { group = "io.ktor", name = "ktor-client-mock", version.ref =
 ktor-client-winhttp = { group = "io.ktor", name = "ktor-client-winhttp", version.ref = "ktor" }
 ktor-serialization-json = { group = "io.ktor", name = "ktor-serialization-kotlinx-json", version.ref = "ktor" }
 okhttp-core = { group = "com.squareup.okhttp3", name = "okhttp", version.ref = "okhttp-bom" }
+realm-base = { group = "io.realm.kotlin", name = "library-base", version.ref = "realm" }
 sqldelight-android = { group = "app.cash.sqldelight", name = "android-driver", version.ref = "sqldelight" }
 sqldelight-native = { group = "app.cash.sqldelight", name = "native-driver", version.ref = "sqldelight" }
 sqldelight-runtime = { group = "app.cash.sqldelight", name = "runtime", version.ref = "sqldelight" }
@@ -70,5 +73,7 @@ kotlin-multiplatform = { id = "org.jetbrains.kotlin.multiplatform", version.ref 
 kotlin-serialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }
 kotlinx-binCompatibility = { id = "org.jetbrains.kotlinx.binary-compatibility-validator", version.ref = "kotlinx-binCompatibility" }
 kotlinx-kover = { id = "org.jetbrains.kotlinx.kover", version.ref = "kotlinx-kover" }
+ksp = { id = "com.google.devtools.ksp", version.ref = "ksp" }
+realm = { id = "io.realm.kotlin", version.ref = "realm" }
 sqldelight = { id = "app.cash.sqldelight", version.ref = "sqldelight" }
 vanniktech-publish = { id = "com.vanniktech.maven.publish", version.ref = "vanniktech-publish" }

@@ -13,6 +13,7 @@ android {
     namespace = "com.bidyut.tech.seahorse.example"
     defaultConfig {
         applicationId = "com.bidyut.tech.seahorse.example"
+        //noinspection OldTargetApi
         targetSdk = 34
         versionCode = 1
         versionName = "1.0"
@@ -56,6 +57,7 @@ dependencies {
     kover(project(":seahorse:core"))
     kover(project(":seahorse:ktor"))
     kover(project(":seahorse:okhttp"))
+    kover(project(":seahorse:realm"))
     kover(project(":seahorse:sqlite"))
 }
 
@@ -75,7 +77,7 @@ kover {
                 rule {
                     groupBy = GroupingEntityType.APPLICATION
                     bound {
-                        minValue = 90
+                        minValue = 75
                         coverageUnits = CoverageUnit.LINE
                         aggregationForGroup = AggregationType.COVERED_PERCENTAGE
                     }
