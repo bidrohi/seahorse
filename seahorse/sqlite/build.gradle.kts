@@ -1,10 +1,10 @@
 import com.vanniktech.maven.publish.SonatypeHost
-import org.jetbrains.kotlin.gradle.plugin.mpp.apple.XCFramework
 
 plugins {
     alias(libs.plugins.kotlin.multiplatform)
     alias(libs.plugins.android.library)
     alias(libs.plugins.kotlinx.kover)
+    alias(libs.plugins.sqldelight)
     alias(libs.plugins.vanniktech.publish)
 }
 
@@ -23,29 +23,18 @@ kotlin {
         }
     }
 
-    val frameworkName = "SeahorseCore"
-    val xcf = XCFramework(frameworkName)
-    listOf(
-        iosX64(),
-        iosArm64(),
-        iosSimulatorArm64(),
-        macosX64(),
-        macosArm64(),
-        watchosX64(),
-        watchosArm32(),
-        watchosArm64(),
-        watchosSimulatorArm64(),
-        tvosX64(),
-        tvosArm64(),
-        tvosSimulatorArm64(),
-    ).forEach {
-        it.binaries.framework {
-            baseName = frameworkName
-            xcf.add(this)
-            isStatic = true
-            export(libs.nsexception)
-        }
-    }
+    iosX64()
+    iosArm64()
+    iosSimulatorArm64()
+    macosX64()
+    macosArm64()
+    watchosX64()
+    watchosArm32()
+    watchosArm64()
+    watchosSimulatorArm64()
+    tvosX64()
+    tvosArm64()
+    tvosSimulatorArm64()
 
     jvm()
 
@@ -56,30 +45,31 @@ kotlin {
 
     sourceSets {
         commonMain.dependencies {
+            api(project(":seahorse:core"))
+
             implementation(libs.kotlinx.coroutines.core)
             implementation(libs.kotlinx.datetime)
-            implementation(libs.kotlinx.serialization.json)
-        }
-        commonTest.dependencies {
-            implementation(libs.test.kotlin)
+
+            implementation(libs.sqldelight.runtime)
         }
         androidMain.dependencies {
-            implementation(libs.androidx.work.runtime)
-            implementation(libs.androidx.preferences)
-        }
-        val androidUnitTest by getting
-        androidUnitTest.dependencies {
-            implementation(libs.test.robolectric)
-            implementation(libs.test.androidx.work)
+            implementation(libs.sqldelight.android)
         }
         appleMain.dependencies {
+            implementation(libs.sqldelight.native)
             api(libs.nsexception)
+        }
+        nativeMain.dependencies {
+            implementation(libs.sqldelight.native)
+        }
+        jvmMain.dependencies {
+            implementation(libs.sqldelight.sqlite)
         }
     }
 }
 
 android {
-    namespace = "com.bidyut.tech.seahorse.core"
+    namespace = "com.bidyut.tech.seahorse.data.sql"
     compileSdk = 34
     defaultConfig {
         minSdk = 21
@@ -90,19 +80,27 @@ android {
     }
 }
 
+sqldelight {
+    databases {
+        create("SeahorseStrings") {
+            packageName.set("com.bidyut.tech.seahorse.data.sql")
+        }
+    }
+}
+
 mavenPublishing {
     coordinates(
         groupId = libNamespace,
-        artifactId = "seahorse-core",
+        artifactId = "seahorse-sqlite",
         version = libVersion,
     )
 
     pom {
-        name = "Seahorse Core"
+        name = "Seahorse SQLite Extension"
         url = "https://github.com/bidrohi/seahorse"
         inceptionYear = "2023"
         description = """
-            Seahorse provides a simple framework to support getting strings from various sources or fallback to the ones compiled into the app.
+            Seahorse SQLite extension.
         """.trimIndent()
 
         licenses {

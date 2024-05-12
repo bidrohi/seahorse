@@ -1,5 +1,4 @@
 import com.vanniktech.maven.publish.SonatypeHost
-import org.jetbrains.kotlin.gradle.plugin.mpp.apple.XCFramework
 
 plugins {
     alias(libs.plugins.kotlin.multiplatform)
@@ -23,29 +22,18 @@ kotlin {
         }
     }
 
-    val frameworkName = "SeahorseCore"
-    val xcf = XCFramework(frameworkName)
-    listOf(
-        iosX64(),
-        iosArm64(),
-        iosSimulatorArm64(),
-        macosX64(),
-        macosArm64(),
-        watchosX64(),
-        watchosArm32(),
-        watchosArm64(),
-        watchosSimulatorArm64(),
-        tvosX64(),
-        tvosArm64(),
-        tvosSimulatorArm64(),
-    ).forEach {
-        it.binaries.framework {
-            baseName = frameworkName
-            xcf.add(this)
-            isStatic = true
-            export(libs.nsexception)
-        }
-    }
+    iosX64()
+    iosArm64()
+    iosSimulatorArm64()
+    macosX64()
+    macosArm64()
+    watchosX64()
+    watchosArm32()
+    watchosArm64()
+    watchosSimulatorArm64()
+    tvosX64()
+    tvosArm64()
+    tvosSimulatorArm64()
 
     jvm()
 
@@ -56,30 +44,40 @@ kotlin {
 
     sourceSets {
         commonMain.dependencies {
+            implementation(project(":seahorse:core"))
+
             implementation(libs.kotlinx.coroutines.core)
-            implementation(libs.kotlinx.datetime)
-            implementation(libs.kotlinx.serialization.json)
+
+            implementation(libs.ktor.client.core)
+            implementation(libs.ktor.client.encoding)
+            implementation(libs.ktor.client.contentNavigation)
+            implementation(libs.ktor.serialization.json)
         }
         commonTest.dependencies {
             implementation(libs.test.kotlin)
+            implementation(libs.ktor.client.mock)
         }
         androidMain.dependencies {
-            implementation(libs.androidx.work.runtime)
-            implementation(libs.androidx.preferences)
-        }
-        val androidUnitTest by getting
-        androidUnitTest.dependencies {
-            implementation(libs.test.robolectric)
-            implementation(libs.test.androidx.work)
+            implementation(libs.ktor.client.android)
         }
         appleMain.dependencies {
+            implementation(libs.ktor.client.darwin)
             api(libs.nsexception)
+        }
+        jvmMain.dependencies {
+            implementation(libs.ktor.client.cio)
+        }
+        linuxMain.dependencies {
+            implementation(libs.ktor.client.cio)
+        }
+        mingwMain.dependencies {
+            implementation(libs.ktor.client.winhttp)
         }
     }
 }
 
 android {
-    namespace = "com.bidyut.tech.seahorse.core"
+    namespace = "com.bidyut.tech.seahorse.data.ktor"
     compileSdk = 34
     defaultConfig {
         minSdk = 21
@@ -93,16 +91,16 @@ android {
 mavenPublishing {
     coordinates(
         groupId = libNamespace,
-        artifactId = "seahorse-core",
+        artifactId = "seahorse-ktor",
         version = libVersion,
     )
 
     pom {
-        name = "Seahorse Core"
+        name = "Seahorse Ktor Extension"
         url = "https://github.com/bidrohi/seahorse"
         inceptionYear = "2023"
         description = """
-            Seahorse provides a simple framework to support getting strings from various sources or fallback to the ones compiled into the app.
+            Seahorse Ktor network extension.
         """.trimIndent()
 
         licenses {

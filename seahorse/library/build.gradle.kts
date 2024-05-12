@@ -23,7 +23,7 @@ kotlin {
         }
     }
 
-    val frameworkName = "SeahorseCore"
+    val frameworkName = "Seahorse"
     val xcf = XCFramework(frameworkName)
     listOf(
         iosX64(),
@@ -43,7 +43,12 @@ kotlin {
             baseName = frameworkName
             xcf.add(this)
             isStatic = true
+            linkerOpts.add("-lsqlite3")
             export(libs.nsexception)
+            export(project(":seahorse:core"))
+            export(project(":seahorse:ktor"))
+            export(project(":seahorse:okhttp"))
+            export(project(":seahorse:sqlite"))
         }
     }
 
@@ -56,30 +61,16 @@ kotlin {
 
     sourceSets {
         commonMain.dependencies {
-            implementation(libs.kotlinx.coroutines.core)
-            implementation(libs.kotlinx.datetime)
-            implementation(libs.kotlinx.serialization.json)
-        }
-        commonTest.dependencies {
-            implementation(libs.test.kotlin)
-        }
-        androidMain.dependencies {
-            implementation(libs.androidx.work.runtime)
-            implementation(libs.androidx.preferences)
-        }
-        val androidUnitTest by getting
-        androidUnitTest.dependencies {
-            implementation(libs.test.robolectric)
-            implementation(libs.test.androidx.work)
-        }
-        appleMain.dependencies {
-            api(libs.nsexception)
+            api(project(":seahorse:core"))
+            api(project(":seahorse:ktor"))
+            api(project(":seahorse:okhttp"))
+            api(project(":seahorse:sqlite"))
         }
     }
 }
 
 android {
-    namespace = "com.bidyut.tech.seahorse.core"
+    namespace = "com.bidyut.tech.seahorse"
     compileSdk = 34
     defaultConfig {
         minSdk = 21
@@ -93,12 +84,12 @@ android {
 mavenPublishing {
     coordinates(
         groupId = libNamespace,
-        artifactId = "seahorse-core",
+        artifactId = "seahorse-full",
         version = libVersion,
     )
 
     pom {
-        name = "Seahorse Core"
+        name = "Seahorse Full"
         url = "https://github.com/bidrohi/seahorse"
         inceptionYear = "2023"
         description = """

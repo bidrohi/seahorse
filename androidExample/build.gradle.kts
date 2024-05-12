@@ -40,6 +40,9 @@ android {
 
 dependencies {
     implementation(project(":seahorse:core"))
+    implementation(project(":seahorse:ktor"))
+    implementation(project(":seahorse:okhttp"))
+    implementation(project(":seahorse:sqlite"))
 
     implementation(libs.kotlinx.coroutines.core)
     implementation(libs.kotlinx.coroutines.android)
