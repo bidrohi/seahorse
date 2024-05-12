@@ -15,7 +15,7 @@ actual fun formatString(
     vararg args: Any,
 ): String {
     return when (args.size) {
-        0 -> NSString.stringWithFormat(fmt)
+        0 -> fmt
         1 -> NSString.stringWithFormat(fmt, args[0])
         2 -> NSString.stringWithFormat(fmt, args[0], args[1])
         3 -> NSString.stringWithFormat(fmt, args[0], args[1], args[2])

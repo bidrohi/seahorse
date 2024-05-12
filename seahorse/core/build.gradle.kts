@@ -49,6 +49,11 @@ kotlin {
 
     jvm()
 
+    linuxX64()
+    linuxArm64()
+
+    mingwX64()
+
     sourceSets {
         commonMain.dependencies {
             implementation(libs.kotlinx.datetime)
@@ -82,12 +87,17 @@ kotlin {
             api(libs.nsexception)
         }
         nativeMain.dependencies {
-            implementation(libs.ktor.client.cio)
             implementation(libs.sqldelight.native)
         }
         jvmMain.dependencies {
             implementation(libs.ktor.client.cio)
             implementation(libs.sqldelight.sqlite)
+        }
+        linuxMain.dependencies {
+            implementation(libs.ktor.client.cio)
+        }
+        mingwMain.dependencies {
+            implementation(libs.ktor.client.winhttp)
         }
     }
 }
@@ -115,7 +125,7 @@ sqldelight {
 mavenPublishing {
     coordinates(
         groupId = libNamespace,
-        artifactId = project.name,
+        artifactId = "seahorse-core",
         version = libVersion,
     )
 
