@@ -7,4 +7,8 @@ actual fun sanitiseFormatString(
 actual fun formatString(
     fmt: String,
     vararg args: Any,
-): String = fmt.format(*args)
+): String = if (args.isEmpty()) {
+    fmt
+} else {
+    fmt.format(*args)
+}
