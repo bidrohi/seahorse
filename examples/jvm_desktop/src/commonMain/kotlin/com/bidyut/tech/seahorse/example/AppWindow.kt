@@ -10,11 +10,11 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.bidyut.tech.seahorse.Seahorse
-import com.bidyut.tech.seahorse.desktopexample.generated.resources.Res
-import com.bidyut.tech.seahorse.desktopexample.generated.resources.app_name
 import com.bidyut.tech.seahorse.example.ui.screen.StringListScreen
 import com.bidyut.tech.seahorse.example.ui.screen.StringListViewModel
 import com.bidyut.tech.seahorse.example.ui.theme.MyApplicationTheme
+import com.bidyut.tech.seahorse.jvm_desktop.generated.resources.Res
+import com.bidyut.tech.seahorse.jvm_desktop.generated.resources.app_name
 import org.jetbrains.compose.resources.ExperimentalResourceApi
 import org.jetbrains.compose.resources.stringResource
 

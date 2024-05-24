@@ -15,8 +15,8 @@ dependencyResolutionManagement {
 
 rootProject.name = "Seahorse Library"
 
-include(":androidExample")
-include(":desktopExample")
+include(":examples:android")
+include(":examples:jvm_desktop")
 include(":seahorse:core")
 include(":seahorse:ktor")
 include(":seahorse:library")
