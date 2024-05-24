@@ -61,6 +61,7 @@ subprojects {
             }
             lint {
                 warningsAsErrors = true
+                disable += "UnusedResources"
             }
             packaging {
                 resources {
