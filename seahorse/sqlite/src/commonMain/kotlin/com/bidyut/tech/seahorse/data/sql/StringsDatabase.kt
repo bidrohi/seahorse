@@ -5,7 +5,6 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import kotlinx.datetime.Clock
 import kotlinx.datetime.Instant
-import kotlinx.datetime.toInstant
 
 class StringsDatabase(
     driverFactory: DatabaseDriverFactory,
@@ -68,6 +67,7 @@ class StringsDatabase(
         languageId: LanguageId,
     ): Instant? = dbQuery.selectUpdatedAtForLanguage(languageId)
         .executeAsOneOrNull()
-        ?.updatedAt
-        ?.toInstant()
+        ?.updatedAt?.let {
+            Instant.parse(it)
+        }
 }

@@ -2,6 +2,7 @@ import org.jetbrains.compose.desktop.application.dsl.TargetFormat
 
 plugins {
     alias(libs.plugins.kotlin.multiplatform)
+    alias(libs.plugins.kotlin.compose)
     alias(libs.plugins.jetbrains.compose)
 }
 
@@ -22,8 +23,8 @@ kotlin {
             implementation(libs.kotlinx.datetime)
             implementation(libs.kotlinx.serialization.json)
 
-            implementation(libs.compose.navigation)
-            implementation(libs.compose.viewmodel)
+            implementation(libs.jetbrains.compose.navigation)
+            implementation(libs.jetbrains.compose.viewmodel)
 
             implementation(compose.runtime)
             implementation(compose.foundation)

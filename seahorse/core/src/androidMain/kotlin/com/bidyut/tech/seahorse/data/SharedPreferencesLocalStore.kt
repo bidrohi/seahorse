@@ -7,7 +7,6 @@ import com.bidyut.tech.seahorse.model.LanguageId
 import com.bidyut.tech.seahorse.utils.formatString
 import kotlinx.datetime.Clock
 import kotlinx.datetime.Instant
-import kotlinx.datetime.toInstant
 import org.jetbrains.annotations.TestOnly
 
 class SharedPreferencesLocalStore(
@@ -34,7 +33,9 @@ class SharedPreferencesLocalStore(
         languageId: LanguageId,
     ): Instant? {
         return getPreferences(languageId).getString(LAST_UPDATED_KEY, null)
-            ?.toInstant()
+            ?.let {
+                Instant.parse(it)
+            }
     }
 
     override suspend fun replaceStrings(
