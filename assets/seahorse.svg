@@ -1,24 +1,55 @@
-<?xml version="1.0" standalone="no"?><!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 20010904//EN"
-    "http://www.w3.org/TR/2001/REC-SVG-20010904/DTD/svg10.dtd">
-<svg version="1.0" xmlns="http://www.w3.org/2000/svg" width="300.000000pt" height="300.000000pt"
-    viewBox="0 0 300.000000 300.000000" preserveAspectRatio="xMidYMid meet">
-    <metadata>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg version="1.0" width="300.000000pt" height="300.000000pt" viewBox="0 0 300.000000 300.000000"
+    preserveAspectRatio="xMidYMid meet" id="svg3" sodipodi:docname="seahorse.svg" inkscape:version="1.4-beta (62f545ba, 2024-04-22)"
+    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape" xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+    xmlns="http://www.w3.org/2000/svg">
+  <defs
+     id="defs3" />
+  <sodipodi:namedview
+     id="namedview3"
+     pagecolor="#505050"
+     bordercolor="#ffffff"
+     borderopacity="1"
+     inkscape:showpageshadow="0"
+     inkscape:pageopacity="0"
+     inkscape:pagecheckerboard="1"
+     inkscape:deskcolor="#505050"
+     inkscape:document-units="pt"
+     inkscape:zoom="2"
+     inkscape:cx="200"
+     inkscape:cy="200"
+     inkscape:window-width="2056"
+     inkscape:window-height="1257"
+     inkscape:window-x="0"
+     inkscape:window-y="44"
+     inkscape:window-maximized="0"
+     inkscape:current-layer="svg3" />
+  <metadata
+     id="metadata1">
         Created by potrace 1.10, written by Peter Selinger 2001-2011
     </metadata>
-    <g transform="translate(0.000000,300.000000) scale(0.050000,-0.050000)" fill="#000000"
-        stroke="none">
-        <path d="M2970 4840 l-98 -100 198 0 198 0 -98 100 c-54 55 -99 100 -100 100
--1 0 -46 -45 -100 -100z" />
-        <path d="M2524 4414 l-225 -226 39 -129 c22 -71 95 -317 161 -546 l122 -417
--212 -523 c-117 -288 -236 -588 -265 -668 l-54 -145 300 -300 299 -300 231 0
-231 0 264 265 265 266 -245 244 -246 245 -189 -190 -189 -189 69 -71 68 -71
-116 115 116 114 80 -78 81 -79 -150 -150 -150 -151 -122 2 -122 2 -178 177
-c-99 98 -179 183 -179 189 0 6 101 137 225 291 124 153 364 453 533 666 l308
-386 -377 561 c-357 529 -376 562 -340 588 36 26 47 15 158 -152 l119 -180 171
-0 172 0 186 -185 185 -184 75 74 74 75 -174 175 -175 176 0 274 0 275 -415 0
--416 0 -225 -226z m804 -72 c71 -78 -51 -181 -129 -111 -48 43 -49 65 -6 112
-43 48 92 47 135 -1z" />
-        <path d="M2240 3121 l0 -364 45 14 c117 37 127 47 181 186 l56 142 -43 157
-c-41 149 -47 159 -116 184 -40 14 -84 30 -98 35 -19 7 -25 -72 -25 -354z" />
-    </g>
+  <rect
+     style="fill:#bdd4e7;stroke-width:1.59901"
+     id="rect3"
+     width="300"
+     height="300"
+     x="0"
+     y="0"
+     inkscape:label="water" />
+  <g
+     transform="translate(0.000000,300.000000) scale(0.050000,-0.050000)"
+     fill="#000000"
+     stroke="none"
+     id="g3"
+     inkscape:label="seahorse">
+    <path
+       d="M2970 4840 l-98 -100 198 0 198 0 -98 100 c-54 55 -99 100 -100 100 -1 0 -46 -45 -100 -100z"
+       id="path1" />
+    <path
+       d="M2524 4414 l-225 -226 39 -129 c22 -71 95 -317 161 -546 l122 -417 -212 -523 c-117 -288 -236 -588 -265 -668 l-54 -145 300 -300 299 -300 231 0 231 0 264 265 265 266 -245 244 -246 245 -189 -190 -189 -189 69 -71 68 -71 116 115 116 114 80 -78 81 -79 -150 -150 -150 -151 -122 2 -122 2 -178 177 c-99 98 -179 183 -179 189 0 6 101 137 225 291 124 153 364 453 533 666 l308 386 -377 561 c-357 529 -376 562 -340 588 36 26 47 15 158 -152 l119 -180 171 0 172 0 186 -185 185 -184 75 74 74 75 -174 175 -175 176 0 274 0 275 -415 0 -416 0 -225 -226z m804 -72 c71 -78 -51 -181 -129 -111 -48 43 -49 65 -6 112 43 48 92 47 135 -1z"
+       id="path2" />
+    <path
+       d="M2240 3121 l0 -364 45 14 c117 37 127 47 181 186 l56 142 -43 157 c-41 149 -47 159 -116 184 -40 14 -84 30 -98 35 -19 7 -25 -72 -25 -354z"
+       id="path3" />
+  </g>
 </svg>

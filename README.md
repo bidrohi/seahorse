@@ -1,4 +1,6 @@
-# Seahorse : Strings from other sources
+<img src="./assets/seahorse.svg" width="48">
+
+# Seahorse : String resources from local or remote sources
 
 [![Kotlin Alpha](https://kotl.in/badges/alpha.svg)](https://kotlinlang.org/docs/components-stability.html)
 [![Kotlin](https://img.shields.io/badge/Kotlin-1.9.23-blue.svg?style=flat&logo=kotlin)](https://kotlinlang.org)
