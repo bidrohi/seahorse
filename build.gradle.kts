@@ -1,3 +1,10 @@
+import com.android.build.api.dsl.CommonExtension
+import org.jetbrains.kotlin.gradle.ExperimentalKotlinGradlePluginApi
+import org.jetbrains.kotlin.gradle.dsl.JvmTarget
+import org.jetbrains.kotlin.gradle.dsl.KotlinMultiplatformExtension
+import org.jetbrains.kotlin.gradle.plugin.mpp.KotlinAndroidTarget
+import org.jetbrains.kotlin.gradle.tasks.KotlinJvmCompile
+
 plugins {
     //trick: for the same plugin versions in all sub-modules
     alias(libs.plugins.android.application).apply(false)
@@ -15,13 +22,51 @@ plugins {
 val libNamespace by rootProject.extra { "com.bidyut.tech.seahorse" }
 val libVersion by rootProject.extra { "0.9.0" }
 
-tasks.register(
-    "clean",
-    Delete::class
-) {
-    delete(rootProject.layout.buildDirectory)
-}
-
 allprojects {
     layout.buildDirectory = File("${rootDir}/build/${projectDir.relativeTo(rootDir)}")
+}
+
+val jvmVersion = JavaVersion.VERSION_11
+val kotlinJvmTarget = JvmTarget.JVM_11
+
+configure(subprojects) {
+    tasks.withType<KotlinJvmCompile>().configureEach {
+        compilerOptions {
+            jvmTarget.set(kotlinJvmTarget)
+        }
+    }
+}
+
+subprojects {
+    afterEvaluate {
+        (extensions.findByName("kotlin") as? KotlinMultiplatformExtension)?.apply {
+            (targets.findByName("androidTarget") as? KotlinAndroidTarget)?.apply {
+                publishLibraryVariants("release")
+                @OptIn(ExperimentalKotlinGradlePluginApi::class)
+                compilerOptions {
+                    jvmTarget.set(kotlinJvmTarget)
+                }
+            }
+        }
+        (extensions.findByName("android") as? CommonExtension<*, *, *, *, *, *>)?.apply {
+            compileSdk = 34
+            buildToolsVersion = "34.0.0"
+            defaultConfig {
+                minSdk = 21
+                testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+            }
+            compileOptions {
+                sourceCompatibility = jvmVersion
+                targetCompatibility = jvmVersion
+            }
+            lint {
+                warningsAsErrors = true
+            }
+            packaging {
+                resources {
+                    excludes += "/META-INF/{AL2.0,LGPL2.1}"
+                }
+            }
+        }
+    }
 }

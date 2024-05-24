@@ -13,14 +13,7 @@ group = libNamespace
 version = libVersion
 
 kotlin {
-    androidTarget {
-        publishLibraryVariants("release")
-        compilations.all {
-            kotlinOptions {
-                jvmTarget = JavaVersion.VERSION_1_8.toString()
-            }
-        }
-    }
+    androidTarget()
 
     iosX64()
     iosArm64()
@@ -78,14 +71,6 @@ kotlin {
 
 android {
     namespace = "com.bidyut.tech.seahorse.data.ktor"
-    compileSdk = 34
-    defaultConfig {
-        minSdk = 21
-    }
-    compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_1_8
-        targetCompatibility = JavaVersion.VERSION_1_8
-    }
 }
 
 mavenPublishing {

@@ -10,5 +10,5 @@ build/
 captures/
 Pods/
 *.podspec
-/desktopExample/*.db
-/.kotlin/
+*.db
+.kotlin/

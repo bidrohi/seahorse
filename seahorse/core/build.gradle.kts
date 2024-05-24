@@ -14,14 +14,7 @@ group = libNamespace
 version = libVersion
 
 kotlin {
-    androidTarget {
-        publishLibraryVariants("release")
-        compilations.all {
-            kotlinOptions {
-                jvmTarget = JavaVersion.VERSION_1_8.toString()
-            }
-        }
-    }
+    androidTarget()
 
     val frameworkName = "SeahorseCore"
     val xcf = XCFramework(frameworkName)
@@ -80,14 +73,6 @@ kotlin {
 
 android {
     namespace = "com.bidyut.tech.seahorse.core"
-    compileSdk = 34
-    defaultConfig {
-        minSdk = 21
-    }
-    compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_1_8
-        targetCompatibility = JavaVersion.VERSION_1_8
-    }
 }
 
 mavenPublishing {

@@ -6,10 +6,8 @@ plugins {
 
 android {
     namespace = "com.bidyut.tech.seahorse.example"
-    compileSdk = 34
     defaultConfig {
         applicationId = "com.bidyut.tech.seahorse.example"
-        minSdk = 21
         targetSdk = 34
         versionCode = 1
         versionName = "1.0"
@@ -17,22 +15,10 @@ android {
     buildFeatures {
         compose = true
     }
-    packaging {
-        resources {
-            excludes += "/META-INF/{AL2.0,LGPL2.1}"
-        }
-    }
     buildTypes {
         getByName("release") {
             isMinifyEnabled = false
         }
-    }
-    compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_1_8
-        targetCompatibility = JavaVersion.VERSION_1_8
-    }
-    kotlinOptions {
-        jvmTarget = JavaVersion.VERSION_1_8.toString()
     }
 }
 
