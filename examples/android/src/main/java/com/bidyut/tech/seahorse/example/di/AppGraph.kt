@@ -8,7 +8,7 @@ import com.bidyut.tech.seahorse.data.AndroidSqliteLocalStore
 import com.bidyut.tech.seahorse.data.ResourceFallbackSource
 
 class AppGraph(
-    val context: Context
+    private val context: Context
 ) {
     val stringKeys = listOf(
         "hello",

@@ -22,12 +22,17 @@ data class SeahorseConfig(
         var localStore: LocalStore? = null
         var networkSource: NetworkSource? = null
 
-        fun build() = SeahorseConfig(
-            defaultLanguageId,
-            cacheInterval,
-            fallbackSource ?: throw IllegalArgumentException("fallbackSource is not set"),
-            localStore,
-            networkSource,
-        )
+        fun build(): SeahorseConfig {
+            if (networkSource != null && localStore == null) {
+                throw IllegalArgumentException("networkSource use requires localStore to be set")
+            }
+            return SeahorseConfig(
+                defaultLanguageId,
+                cacheInterval,
+                fallbackSource ?: throw IllegalArgumentException("fallbackSource is not set"),
+                localStore,
+                networkSource,
+            )
+        }
     }
 }
