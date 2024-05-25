@@ -58,6 +58,9 @@ kotlin {
         jvmMain.dependencies {
             implementation(libs.sqldelight.sqlite)
         }
+        jvmTest.dependencies {
+            implementation(libs.test.kotlin)
+        }
     }
 }
 

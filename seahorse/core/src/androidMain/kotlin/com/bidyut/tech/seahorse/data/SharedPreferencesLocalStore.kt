@@ -7,7 +7,6 @@ import com.bidyut.tech.seahorse.model.LanguageId
 import com.bidyut.tech.seahorse.utils.formatString
 import kotlinx.datetime.Clock
 import kotlinx.datetime.Instant
-import org.jetbrains.annotations.TestOnly
 
 class SharedPreferencesLocalStore(
     private val context: Context,
@@ -68,17 +67,6 @@ class SharedPreferencesLocalStore(
     ): String? {
         return getPreferences(languageId).getString(key, null)?.let {
             formatString(it, *formatArgs)
-        }
-    }
-
-    @TestOnly
-    fun clear(
-        vararg languageIds: LanguageId,
-    ) {
-        for (languageId in languageIds) {
-            getPreferences(languageId).edit {
-                clear()
-            }
         }
     }
 

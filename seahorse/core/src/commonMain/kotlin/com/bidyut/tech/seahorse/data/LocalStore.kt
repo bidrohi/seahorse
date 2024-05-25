@@ -1,6 +1,7 @@
 package com.bidyut.tech.seahorse.data
 
 import com.bidyut.tech.seahorse.model.LanguageId
+import kotlinx.coroutines.runBlocking
 import kotlinx.datetime.Instant
 
 interface LocalStore {
@@ -22,4 +23,14 @@ interface LocalStore {
         key: String,
         vararg formatArgs: Any,
     ): String?
+
+    fun clear(
+        vararg languageIds: LanguageId,
+    ) {
+        runBlocking {
+            for (languageId in languageIds) {
+                clearStore(languageId)
+            }
+        }
+    }
 }
