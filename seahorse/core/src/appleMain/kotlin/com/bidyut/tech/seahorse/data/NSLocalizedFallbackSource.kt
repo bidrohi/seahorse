@@ -8,19 +8,21 @@ import kotlin.experimental.ExperimentalObjCName
 @OptIn(ExperimentalObjCName::class)
 class NSLocalizedFallbackSource(
     @ObjCName("_")
-    private val rootBundle: NSBundle = NSBundle.mainBundle,
-    private val tableName: String? = null,
-    private val getPathForLanguageId: (LanguageId) -> String = { it },
+    private val rootBundle: NSBundle,
+    private val tableName: String?,
+    private val getPathForLanguageId: (LanguageId) -> String,
 ) : FallbackSource {
     private var bundle = rootBundle
 
     constructor() : this(NSBundle.mainBundle)
 
     constructor(
+        @ObjCName("_")
         rootBundle: NSBundle,
     ) : this(rootBundle, null)
 
     constructor(
+        @ObjCName("_")
         rootBundle: NSBundle,
         tableName: String? = null,
     ) : this(rootBundle, tableName, { it })
