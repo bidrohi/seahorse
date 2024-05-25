@@ -87,30 +87,32 @@ class Seahorse(
     fun refreshStrings(
         @ObjCName("_")
         languages: List<LanguageId>,
-    ): Boolean {
+    ): Int {
         return runBlocking(Dispatchers.IO) {
+            var success = 0
             for (language in languages) {
                 val result = fetchStrings(language)
-                if (result.isFailure) {
-                    return@runBlocking false
+                if (!result.isFailure) {
+                    success++
                 }
             }
-            true
+            success
         }
     }
 
     fun clearStore(
         @ObjCName("_")
         languages: List<LanguageId>,
-    ): Boolean {
+    ): Int {
         return runBlocking(Dispatchers.IO) {
+            var success = 0
             for (language in languages) {
                 val result = clearStore(language)
-                if (result.isFailure) {
-                    return@runBlocking false
+                if (!result.isFailure) {
+                    success++
                 }
             }
-            true
+            success
         }
     }
 }

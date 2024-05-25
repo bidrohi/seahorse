@@ -1,7 +1,12 @@
+import kotlinx.kover.gradle.plugin.dsl.AggregationType
+import kotlinx.kover.gradle.plugin.dsl.CoverageUnit
+import kotlinx.kover.gradle.plugin.dsl.GroupingEntityType
+
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.kotlin.compose)
+    alias(libs.plugins.kotlinx.kover)
 }
 
 android {
@@ -47,4 +52,35 @@ dependencies {
     implementation(libs.androidx.activity)
     implementation(libs.androidx.lifecycle)
     implementation(libs.androidx.navigation)
+
+    kover(project(":seahorse:core"))
+    kover(project(":seahorse:ktor"))
+    kover(project(":seahorse:okhttp"))
+    kover(project(":seahorse:sqlite"))
+}
+
+kover {
+    reports {
+        filters {
+            excludes {
+                classes(
+                    // Skip example code
+                    "*.example.*",
+                )
+            }
+        }
+        total {
+            verify {
+                onCheck = true
+                rule {
+                    groupBy = GroupingEntityType.APPLICATION
+                    bound {
+                        minValue = 30
+                        coverageUnits = CoverageUnit.LINE
+                        aggregationForGroup = AggregationType.COVERED_PERCENTAGE
+                    }
+                }
+            }
+        }
+    }
 }

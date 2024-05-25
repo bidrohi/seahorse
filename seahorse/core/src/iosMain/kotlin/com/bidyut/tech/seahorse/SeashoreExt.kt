@@ -34,7 +34,7 @@ fun Seahorse.registerBackgroundTask(
         REFRESH_STRINGS_BACKGROUND_TASK_ID,
         null,
     ) { task ->
-        task?.setTaskCompletedWithSuccess(refreshStrings(languages))
+        task?.setTaskCompletedWithSuccess(refreshStrings(languages) == languages.size)
         schedule(canRunImmediately)
     }
 }
