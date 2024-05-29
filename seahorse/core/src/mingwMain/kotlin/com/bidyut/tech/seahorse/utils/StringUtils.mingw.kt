@@ -1,5 +1,6 @@
 package com.bidyut.tech.seahorse.utils
 
+import com.bidyut.tech.seahorse.annotation.SeahorseInternalApi
 import kotlinx.cinterop.ExperimentalForeignApi
 import kotlinx.cinterop.addressOf
 import kotlinx.cinterop.convert
@@ -7,7 +8,10 @@ import kotlinx.cinterop.usePinned
 import platform.posix.size_t
 import platform.posix.snprintf
 
+@SeahorseInternalApi
 private val StringParamMatcher = Regex("(?<!%)%([1-9]\\$|)s")
+
+@SeahorseInternalApi
 actual fun sanitiseFormatString(
     string: String,
 ): String = StringParamMatcher.replace(string) {
@@ -15,6 +19,7 @@ actual fun sanitiseFormatString(
 }
 
 @OptIn(ExperimentalForeignApi::class)
+@SeahorseInternalApi
 actual fun formatString(
     fmt: String,
     vararg args: Any,

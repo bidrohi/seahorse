@@ -1,11 +1,13 @@
 package com.bidyut.tech.seahorse.data
 
+import com.bidyut.tech.seahorse.annotation.SeahorseInternalApi
 import com.bidyut.tech.seahorse.model.LanguageId
 import kotlinx.datetime.Clock
 import kotlinx.datetime.Instant
 import kotlin.time.Duration
 
-class StringsRepository(
+@SeahorseInternalApi
+internal class StringsRepository(
     internal val fallback: FallbackSource,
     private val localStore: LocalStore?,
     private val networkSource: NetworkSource?,

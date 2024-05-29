@@ -4,7 +4,9 @@ import app.cash.sqldelight.db.QueryResult
 import app.cash.sqldelight.db.SqlDriver
 import app.cash.sqldelight.db.SqlSchema
 import app.cash.sqldelight.driver.native.NativeSqliteDriver
+import com.bidyut.tech.seahorse.annotation.SeahorseInternalApi
 
+@SeahorseInternalApi
 class NativeDatabaseDriverFactory : DatabaseDriverFactory {
     override fun createDriver(
         schema: SqlSchema<QueryResult.Value<Unit>>,

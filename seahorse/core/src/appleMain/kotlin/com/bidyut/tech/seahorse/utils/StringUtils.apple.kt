@@ -1,15 +1,20 @@
 package com.bidyut.tech.seahorse.utils
 
+import com.bidyut.tech.seahorse.annotation.SeahorseInternalApi
 import platform.Foundation.NSString
 import platform.Foundation.stringWithFormat
 
+@SeahorseInternalApi
 private val StringParamMatcher = Regex("(?<!%)%([1-9]\\$|)s")
+
+@SeahorseInternalApi
 actual fun sanitiseFormatString(
     string: String,
 ): String = StringParamMatcher.replace(string) {
     it.value.replace("s", "@")
 }
 
+@SeahorseInternalApi
 actual fun formatString(
     fmt: String,
     vararg args: Any,

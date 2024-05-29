@@ -1,12 +1,14 @@
 package com.bidyut.tech.seahorse.data.sql
 
+import com.bidyut.tech.seahorse.annotation.SeahorseInternalApi
 import com.bidyut.tech.seahorse.model.LanguageId
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import kotlinx.datetime.Clock
 import kotlinx.datetime.Instant
 
-class StringsDatabase(
+@SeahorseInternalApi
+internal class StringsDatabase(
     driverFactory: DatabaseDriverFactory,
 ) {
     private val database by lazy {

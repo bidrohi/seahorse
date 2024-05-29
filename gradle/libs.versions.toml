@@ -15,6 +15,7 @@ jetbrains-compose-core = "1.6.10"
 jetbrains-compose-navigation = "2.8.0-alpha02"
 jetbrains-compose-viewmodel = "2.8.0"
 kotlin = "2.0.0"
+kotlinx-binCompatibility = "0.15.0-Beta.2"
 kotlinx-coroutines = "1.8.1"
 kotlinx-datetime = "0.6.0"
 kotlinx-kover = "0.8.0"
@@ -83,6 +84,7 @@ kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
 kotlin-compose = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }
 kotlin-multiplatform = { id = "org.jetbrains.kotlin.multiplatform", version.ref = "kotlin" }
 kotlin-serialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }
+kotlinx-binCompatibility = { id = "org.jetbrains.kotlinx.binary-compatibility-validator", version.ref = "kotlinx-binCompatibility" }
 kotlinx-kover = { id = "org.jetbrains.kotlinx.kover", version.ref = "kotlinx-kover" }
 ksp = { id = "com.google.devtools.ksp", version.ref = "ksp" }
 sqldelight = { id = "app.cash.sqldelight", version.ref = "sqldelight" }

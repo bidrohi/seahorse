@@ -70,7 +70,7 @@ class SharedPreferencesLocalStore(
         }
     }
 
-    companion object {
+    private companion object {
         private const val LAST_UPDATED_KEY = "com_bidyut_tech_seahorse_last_updated"
     }
 }

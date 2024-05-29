@@ -13,6 +13,7 @@ plugins {
     alias(libs.plugins.kotlin.multiplatform).apply(false)
     alias(libs.plugins.kotlin.compose).apply(false)
     alias(libs.plugins.kotlin.serialization).apply(false)
+    alias(libs.plugins.kotlinx.binCompatibility).apply(true)
     alias(libs.plugins.kotlinx.kover).apply(false)
     alias(libs.plugins.ksp).apply(false)
     alias(libs.plugins.sqldelight).apply(false)
@@ -21,6 +22,20 @@ plugins {
 
 val libNamespace by rootProject.extra { "com.bidyut.tech.seahorse" }
 val libVersion by rootProject.extra { "0.9.0" }
+
+apiValidation {
+    ignoredPackages += setOf(
+        "com.bidyut.tech.seahorse.example",
+        "com.bidyut.tech.seahorse.annotation",
+        "com.bidyut.tech.seahorse.data.sql",
+    )
+    ignoredProjects += setOf(
+        "android",
+        "jvm_desktop",
+        "library",
+    )
+    nonPublicMarkers += "com.bidyut.tech.seahorse.annotation.SeahorseInternalApi"
+}
 
 allprojects {
     layout.buildDirectory = File("${rootDir}/build/${projectDir.relativeTo(rootDir)}")

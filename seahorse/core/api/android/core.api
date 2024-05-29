@@ -1,0 +1,127 @@
+public final class com/bidyut/tech/seahorse/Seahorse {
+	public fun <init> (Lkotlin/jvm/functions/Function1;)V
+	public final fun clearStore (Ljava/util/List;)I
+	public final fun clearStore-gIAlu-s (Ljava/lang/String;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public final fun fetchStrings-gIAlu-s (Ljava/lang/String;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public final fun getDefaultLanguageId ()Ljava/lang/String;
+	public final fun getString (Ljava/lang/String;)Ljava/lang/String;
+	public final fun getString (Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/String;
+	public final fun getStringForLanguage (Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;
+	public final fun getStringForLanguage (Ljava/lang/String;Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/String;
+	public final fun refreshStrings (Ljava/util/List;)I
+	public final fun setDefaultLanguageId (Ljava/lang/String;)V
+}
+
+public final class com/bidyut/tech/seahorse/SeahorseConfig {
+	public synthetic fun <init> (Ljava/lang/String;JLcom/bidyut/tech/seahorse/data/FallbackSource;Lcom/bidyut/tech/seahorse/data/LocalStore;Lcom/bidyut/tech/seahorse/data/NetworkSource;Lkotlin/jvm/internal/DefaultConstructorMarker;)V
+}
+
+public final class com/bidyut/tech/seahorse/SeahorseConfig$Builder {
+	public fun <init> ()V
+	public final fun build ()Lcom/bidyut/tech/seahorse/SeahorseConfig;
+	public final fun getCacheInterval-UwyO8pc ()J
+	public final fun getDefaultLanguageId ()Ljava/lang/String;
+	public final fun getFallbackSource ()Lcom/bidyut/tech/seahorse/data/FallbackSource;
+	public final fun getLocalStore ()Lcom/bidyut/tech/seahorse/data/LocalStore;
+	public final fun getNetworkSource ()Lcom/bidyut/tech/seahorse/data/NetworkSource;
+	public final fun setCacheInterval-LRDsOJo (J)V
+	public final fun setDefaultLanguageId (Ljava/lang/String;)V
+	public final fun setFallbackSource (Lcom/bidyut/tech/seahorse/data/FallbackSource;)V
+	public final fun setLocalStore (Lcom/bidyut/tech/seahorse/data/LocalStore;)V
+	public final fun setNetworkSource (Lcom/bidyut/tech/seahorse/data/NetworkSource;)V
+}
+
+public final class com/bidyut/tech/seahorse/SeahorseExtKt {
+	public static final fun schedule (Lcom/bidyut/tech/seahorse/Seahorse;Landroid/content/Context;Ljava/lang/Class;[Ljava/lang/String;)Landroidx/work/Operation;
+	public static final fun schedule (Lcom/bidyut/tech/seahorse/Seahorse;Landroidx/work/WorkManager;Ljava/lang/Class;[Ljava/lang/String;)Landroidx/work/Operation;
+}
+
+public abstract interface class com/bidyut/tech/seahorse/data/FallbackSource {
+	public abstract fun getStringByKey (Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/String;
+	public abstract fun setLanguageId (Ljava/lang/String;)V
+}
+
+public abstract class com/bidyut/tech/seahorse/data/JsonFallbackSource : com/bidyut/tech/seahorse/data/FallbackSource {
+	public fun <init> ()V
+	public fun <init> (Lkotlinx/serialization/json/Json;)V
+	public synthetic fun <init> (Lkotlinx/serialization/json/Json;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	protected final fun getJson ()Lkotlinx/serialization/json/Json;
+	public fun getStringByKey (Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/String;
+	protected final fun parseStrings (Ljava/lang/String;)Ljava/util/Map;
+	public abstract fun readStrings (Ljava/lang/String;)Ljava/util/Map;
+	public fun setLanguageId (Ljava/lang/String;)V
+}
+
+public abstract interface class com/bidyut/tech/seahorse/data/LocalStore {
+	public abstract fun clear ([Ljava/lang/String;)V
+	public abstract fun clearStore-gIAlu-s (Ljava/lang/String;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public abstract fun getLastUpdatedTime (Ljava/lang/String;)Lkotlinx/datetime/Instant;
+	public abstract fun getStringByKey (Ljava/lang/String;Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/String;
+	public abstract fun replaceStrings-0E7RQCE (Ljava/lang/String;Ljava/util/Map;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+}
+
+public final class com/bidyut/tech/seahorse/data/LocalStore$DefaultImpls {
+	public static fun clear (Lcom/bidyut/tech/seahorse/data/LocalStore;[Ljava/lang/String;)V
+}
+
+public final class com/bidyut/tech/seahorse/data/MapFallbackSource : com/bidyut/tech/seahorse/data/FallbackSource {
+	public fun <init> (Ljava/util/Map;)V
+	public fun getStringByKey (Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/String;
+	public fun setLanguageId (Ljava/lang/String;)V
+}
+
+public final class com/bidyut/tech/seahorse/data/MapLocalStore : com/bidyut/tech/seahorse/data/LocalStore {
+	public fun <init> ()V
+	public fun clear ([Ljava/lang/String;)V
+	public fun clearStore-gIAlu-s (Ljava/lang/String;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public fun getLastUpdatedTime (Ljava/lang/String;)Lkotlinx/datetime/Instant;
+	public fun getStringByKey (Ljava/lang/String;Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/String;
+	public fun replaceStrings-0E7RQCE (Ljava/lang/String;Ljava/util/Map;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+}
+
+public final class com/bidyut/tech/seahorse/data/MapNetworkSource : com/bidyut/tech/seahorse/data/NetworkSource {
+	public fun <init> (Ljava/util/Map;)V
+	public fun fetchStrings-gIAlu-s (Ljava/lang/String;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+}
+
+public abstract interface class com/bidyut/tech/seahorse/data/NetworkSource {
+	public abstract fun fetchStrings-gIAlu-s (Ljava/lang/String;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+}
+
+public final class com/bidyut/tech/seahorse/data/ResourceFallbackSource : com/bidyut/tech/seahorse/data/FallbackSource {
+	public fun <init> (Landroid/content/Context;)V
+	public fun getStringByKey (Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/String;
+	public fun setLanguageId (Ljava/lang/String;)V
+}
+
+public final class com/bidyut/tech/seahorse/data/SharedPreferencesLocalStore : com/bidyut/tech/seahorse/data/LocalStore {
+	public fun <init> (Landroid/content/Context;)V
+	public fun clear ([Ljava/lang/String;)V
+	public fun clearStore-gIAlu-s (Ljava/lang/String;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public fun getLastUpdatedTime (Ljava/lang/String;)Lkotlinx/datetime/Instant;
+	public fun getStringByKey (Ljava/lang/String;Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/String;
+	public fun replaceStrings-0E7RQCE (Ljava/lang/String;Ljava/util/Map;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+}
+
+public final class com/bidyut/tech/seahorse/model/LanguageKt {
+	public static final field LanguageBengali Ljava/lang/String;
+	public static final field LanguageEnglish Ljava/lang/String;
+}
+
+public final class com/bidyut/tech/seahorse/utils/StringUtils_androidKt {
+	public static final fun formatString (Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/String;
+	public static final fun sanitiseFormatString (Ljava/lang/String;)Ljava/lang/String;
+}
+
+public abstract class com/bidyut/tech/seahorse/worker/RefreshStringsWorker : androidx/work/CoroutineWorker {
+	public static final field Companion Lcom/bidyut/tech/seahorse/worker/RefreshStringsWorker$Companion;
+	public static final field NAME Ljava/lang/String;
+	public fun <init> (Landroid/content/Context;Landroidx/work/WorkerParameters;)V
+	public fun doWork (Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public abstract fun getSeahorse ()Lcom/bidyut/tech/seahorse/Seahorse;
+}
+
+public final class com/bidyut/tech/seahorse/worker/RefreshStringsWorker$Companion {
+	public final fun schedule-exY8QGI (Landroidx/work/WorkManager;Ljava/lang/Class;J[Ljava/lang/String;)Landroidx/work/Operation;
+}
+

@@ -8,8 +8,8 @@ import com.bidyut.tech.seahorse.model.LanguageId
 import kotlin.time.Duration
 import kotlin.time.Duration.Companion.days
 
-data class SeahorseConfig(
-    internal var defaultLanguageId: LanguageId,
+class SeahorseConfig(
+    internal val defaultLanguageId: LanguageId,
     internal val cacheInterval: Duration,
     internal val fallbackSource: FallbackSource,
     internal val localStore: LocalStore?,
