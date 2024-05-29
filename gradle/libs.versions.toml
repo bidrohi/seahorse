@@ -1,5 +1,6 @@
 [versions]
 androidGradle = "8.4.1"
+android-jdk-desugar = "2.0.4"
 androidx-activity = "1.9.0"
 androidx-core = "1.13.1"
 androidx-lifecycle = "2.8.0"
@@ -22,6 +23,7 @@ test-robolectric = "4.12.1"
 vanniktech-publish = "0.28.0"
 
 [libraries]
+android-jdkDesugar = { module = "com.android.tools:desugar_jdk_libs", version.ref = "android-jdk-desugar" }
 androidx-activity = { group = "androidx.activity", name = "activity-compose", version.ref = "androidx-activity" }
 androidx-core = { group = "androidx.core", name = "core-ktx", version.ref = "androidx-core" }
 androidx-lifecycle = { group = "androidx.lifecycle", name = "lifecycle-viewmodel-compose", version.ref = "androidx-lifecycle" }

@@ -75,6 +75,7 @@ subprojects {
                 testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
             }
             compileOptions {
+                isCoreLibraryDesugaringEnabled = true
                 sourceCompatibility = jvmVersion
                 targetCompatibility = jvmVersion
             }
@@ -86,6 +87,9 @@ subprojects {
                 resources {
                     excludes += "/META-INF/{AL2.0,LGPL2.1}"
                 }
+            }
+            dependencies {
+                "coreLibraryDesugaring"(libs.android.jdkDesugar)
             }
         }
     }
