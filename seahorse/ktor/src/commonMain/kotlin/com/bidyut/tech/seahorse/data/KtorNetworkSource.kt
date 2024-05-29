@@ -37,7 +37,7 @@ open class KtorNetworkSource(
                 gzip(0.9F)
             }
             install(UserAgent) {
-                agent = "Seahorse/0.0.1"
+                agent = "Seahorse/0.9.0"
             }
             install(HttpCache)
             client()

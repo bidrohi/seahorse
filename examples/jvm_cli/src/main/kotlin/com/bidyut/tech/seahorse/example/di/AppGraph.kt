@@ -3,7 +3,7 @@ package com.bidyut.tech.seahorse.example.di
 import com.bidyut.tech.seahorse.Seahorse
 import com.bidyut.tech.seahorse.data.CioKtorNetworkSource
 import com.bidyut.tech.seahorse.data.JdbcSqliteLocalStore
-import com.bidyut.tech.seahorse.data.JsonResourceFallbackSource
+import com.bidyut.tech.seahorse.example.data.JsonResourceFallbackSource
 
 class AppGraph {
     val stringKeys = listOf(

@@ -10,12 +10,12 @@ plugins {
     alias(libs.plugins.android.application).apply(false)
     alias(libs.plugins.android.library).apply(false)
     alias(libs.plugins.kotlin.android).apply(false)
-    alias(libs.plugins.kotlin.multiplatform).apply(false)
     alias(libs.plugins.kotlin.compose).apply(false)
+    alias(libs.plugins.kotlin.jvm).apply(false)
+    alias(libs.plugins.kotlin.multiplatform).apply(false)
     alias(libs.plugins.kotlin.serialization).apply(false)
     alias(libs.plugins.kotlinx.binCompatibility).apply(true)
     alias(libs.plugins.kotlinx.kover).apply(false)
-    alias(libs.plugins.ksp).apply(false)
     alias(libs.plugins.sqldelight).apply(false)
     alias(libs.plugins.vanniktech.publish).apply(false)
 }
@@ -31,7 +31,7 @@ apiValidation {
     )
     ignoredProjects += setOf(
         "android",
-        "jvm_desktop",
+        "jvm_cli",
         "library",
     )
     nonPublicMarkers += "com.bidyut.tech.seahorse.annotation.SeahorseInternalApi"
@@ -49,6 +49,10 @@ configure(subprojects) {
         compilerOptions {
             jvmTarget.set(kotlinJvmTarget)
         }
+    }
+    tasks.withType<JavaCompile>().configureEach {
+        sourceCompatibility = jvmVersion.toString()
+        targetCompatibility = jvmVersion.toString()
     }
 }
 
