@@ -46,7 +46,7 @@ class StringListViewModel: ObservableObject {
     func clearStore(
         _ languageId: String
     ) {
-        if (self.seahorse.clearStore([languageId])) {
+        if self.seahorse.clearStore([languageId]) > 0 {
             self.lastUpdated = Date.distantPast
         }
     }

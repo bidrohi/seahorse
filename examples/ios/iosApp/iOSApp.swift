@@ -29,7 +29,7 @@ class AppDelegate: NSObject, UIApplicationDelegate {
     }
 
     func application(_ application: UIApplication, performFetchWithCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
-        if AppGraph.shared.seahorse.refreshStrings([LanguageKt.LanguageEnglish, LanguageKt.LanguageBengali]) {
+        if AppGraph.shared.seahorse.refreshStrings([LanguageKt.LanguageEnglish, LanguageKt.LanguageBengali]) > 0 {
             completionHandler(.newData)
         } else {
             completionHandler(.failed)
