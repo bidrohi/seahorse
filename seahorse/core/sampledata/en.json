@@ -1,7 +1,11 @@
 {
-  "hello": "Online Hello",
-  "world": "Online World",
-  "foundation": "Online Foundation",
-  "dune": "Online DUNE",
-  "three_body_problem": "Online Three Body Problem"
+  "sentence_structure": "Online: %1$s %2$s %3$s",
+  "hello": "Online: Hello",
+  "world": "Online: World",
+  "foundation": "Online: Foundation",
+  "dune": "Online: Dune",
+  "three_body_problem": "Online: Three Body Problem",
+  "platform": "Online: %s",
+  "percent": "Online: %s%% of 100%%",
+  "guarantee": "Online: 100% guaranteed"
 }

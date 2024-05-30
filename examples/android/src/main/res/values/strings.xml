@@ -9,4 +9,6 @@
     <string name="three_body_problem">Three Body Problem</string>
     <string name="platform">Local %1$s</string>
     <string name="sentence_structure">%1$s %2$s %3$s</string>
+    <string name="percent">%s%% of 100%%</string>
+    <string name="guarantee">100%% guaranteed</string>
 </resources>

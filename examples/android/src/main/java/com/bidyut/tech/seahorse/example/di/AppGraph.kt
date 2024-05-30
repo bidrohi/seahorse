@@ -15,6 +15,8 @@ class AppGraph(
         "world",
         "platform",
         "sentence_structure",
+        "percent",
+        "guarantee",
         "foundation",
         "dune",
         "three_body_problem",

@@ -71,6 +71,10 @@ private fun showStrings(seahorse: Seahorse) {
                 seahorse.getString(key, "Seahorse", "gives", "strings")
             }
 
+            "percent" -> {
+                seahorse.getString(key, 42)
+            }
+
             else -> {
                 seahorse.getString(key)
             }

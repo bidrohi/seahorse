@@ -20,6 +20,8 @@ class AppGraph {
             "hello",
             "world",
             "platform",
+            "percent",
+            "guarantee",
             "sentence_structure",
             "foundation",
             "dune",

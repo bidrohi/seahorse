@@ -138,6 +138,9 @@ fun ExampleStringList(
                     "sentence_structure" -> {
                         viewModel.seahorse.getString(it, "Seahorse", "gives", "strings")
                     }
+                    "percent" -> {
+                        viewModel.seahorse.getString(it, 42)
+                    }
                     else -> {
                         viewModel.seahorse.getString(it)
                     }

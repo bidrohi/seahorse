@@ -9,4 +9,6 @@
     <string name="three_body_problem">থ্রি বডি প্রবলেম</string>
     <string name="platform">স্থানীয় %1$s</string>
     <string name="sentence_structure">%1$s %3$s %2$s</string>
+    <string name="percent">১০০%% এর %s%%</string>
+    <string name="guarantee">১০০%% নিশ্চয়তা</string>
 </resources>

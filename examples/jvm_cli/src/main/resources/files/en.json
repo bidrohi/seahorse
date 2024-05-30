@@ -5,5 +5,7 @@
     "foundation": "Foundation",
     "dune": "DUNE",
     "three_body_problem": "Three Body Problem",
-    "platform": "%s"
+    "platform": "Local %s",
+    "percent": "%s%% of 100%%",
+    "guarantee": "100% guaranteed"
 }

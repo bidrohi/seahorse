@@ -12,3 +12,5 @@
 "three_body_problem" = "Three Body Problem";
 "platform" = "Local %@";
 "sentence_structure" = "%1$@ %2$@ %3$@";
+"percent" = "%@%% of 100%%";
+"guarantee" = "100% guaranteed";

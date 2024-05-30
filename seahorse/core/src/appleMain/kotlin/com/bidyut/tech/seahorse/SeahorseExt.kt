@@ -14,13 +14,13 @@ fun Seahorse.getStringForLanguage(
     languageId: LanguageId,
     @ObjCName("_")
     key: String,
-    args: List<Any>,
+    args: List<String>,
 ): String = getStringForLanguage(languageId, key, *args.toTypedArray())
 
 fun Seahorse.getString(
     @ObjCName("_")
     key: String,
-    args: List<Any>,
+    args: List<String>,
 ): String = getStringForLanguage(defaultLanguageId, key, *args.toTypedArray())
 
 class FetchStringsFailureException(
