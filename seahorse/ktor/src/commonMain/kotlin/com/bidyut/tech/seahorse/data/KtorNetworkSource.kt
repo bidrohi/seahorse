@@ -4,6 +4,7 @@ import com.bidyut.tech.seahorse.model.LanguageId
 import io.ktor.client.HttpClient
 import io.ktor.client.HttpClientConfig
 import io.ktor.client.call.body
+import io.ktor.client.engine.HttpClientEngine
 import io.ktor.client.engine.HttpClientEngineFactory
 import io.ktor.client.plugins.UserAgent
 import io.ktor.client.plugins.cache.HttpCache
@@ -22,10 +23,10 @@ open class KtorNetworkSource(
 ) : NetworkSource {
     constructor(
         getUrlForLanguageId: (LanguageId) -> String,
-        engineFactory: HttpClientEngineFactory<*>,
-        client: HttpClientConfig<*>.() -> Unit,
+        engine: HttpClientEngine,
+        config: HttpClientConfig<*>.() -> Unit,
     ) : this(
-        HttpClient(engineFactory) {
+        HttpClient(engine) {
             install(ContentNegotiation) {
                 json(Json {
                     ignoreUnknownKeys = true
@@ -40,17 +41,27 @@ open class KtorNetworkSource(
                 agent = "Seahorse/0.9.0"
             }
             install(HttpCache)
-            client()
+            config()
         },
         getUrlForLanguageId,
     )
 
     constructor(
+        getUrlForLanguageId: (LanguageId) -> String,
         engineFactory: HttpClientEngineFactory<*>,
+        clientConfig: HttpClientConfig<*>.() -> Unit,
+    ) : this(
+        getUrlForLanguageId,
+        engineFactory.create(),
+        clientConfig
+    )
+
+    constructor(
+        engine: HttpClientEngine,
         getUrlForLanguageId: (LanguageId) -> String,
     ) : this(
         getUrlForLanguageId,
-        engineFactory,
+        engine,
         {},
     )
 

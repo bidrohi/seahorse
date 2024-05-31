@@ -5,7 +5,9 @@ public final class com/bidyut/tech/seahorse/data/AndroidKtorNetworkSource : com/
 
 public class com/bidyut/tech/seahorse/data/KtorNetworkSource : com/bidyut/tech/seahorse/data/NetworkSource {
 	public fun <init> (Lio/ktor/client/HttpClient;Lkotlin/jvm/functions/Function1;)V
-	public fun <init> (Lio/ktor/client/engine/HttpClientEngineFactory;Lkotlin/jvm/functions/Function1;)V
+	public fun <init> (Lio/ktor/client/engine/HttpClientEngine;Lkotlin/jvm/functions/Function1;)V
+	public fun <init> (Lkotlin/jvm/functions/Function1;Lio/ktor/client/engine/HttpClientEngine;Lcom/bidyut/tech/seahorse/utils/UserAgentProvider;Lkotlin/jvm/functions/Function1;)V
+	public synthetic fun <init> (Lkotlin/jvm/functions/Function1;Lio/ktor/client/engine/HttpClientEngine;Lcom/bidyut/tech/seahorse/utils/UserAgentProvider;Lkotlin/jvm/functions/Function1;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
 	public fun <init> (Lkotlin/jvm/functions/Function1;Lio/ktor/client/engine/HttpClientEngineFactory;Lkotlin/jvm/functions/Function1;)V
 	public fun fetchStrings-gIAlu-s (Ljava/lang/String;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 }
