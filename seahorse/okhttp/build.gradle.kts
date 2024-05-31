@@ -24,6 +24,11 @@ kotlin {
 
             implementation(libs.okhttp.core)
         }
+        val androidUnitTest by getting
+        androidUnitTest.dependencies {
+            implementation(libs.test.kotlin)
+            implementation(libs.test.okhttp.mockwebserver)
+        }
     }
 }
 

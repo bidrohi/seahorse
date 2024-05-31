@@ -15,6 +15,10 @@ import okio.IOException
 
 class OkHttpNetworkSource(
     private val client: OkHttpClient,
+    private val json: Json = Json {
+        ignoreUnknownKeys = true
+        isLenient = true
+    },
     private val getUrlForLanguageId: (LanguageId) -> String,
 ) : NetworkSource {
     constructor(
@@ -22,7 +26,7 @@ class OkHttpNetworkSource(
         userAgentProvider: UserAgentProvider = SeahorseUserAgentProvider(),
         config: OkHttpClient.Builder.() -> Unit,
     ) : this(
-        OkHttpClient.Builder()
+        client = OkHttpClient.Builder()
             .addNetworkInterceptor {
                 it.proceed(
                     it.request()
@@ -36,7 +40,7 @@ class OkHttpNetworkSource(
             }
             .apply(config)
             .build(),
-        getUrlForLanguageId,
+        getUrlForLanguageId = getUrlForLanguageId,
     )
 
     constructor(
@@ -45,11 +49,6 @@ class OkHttpNetworkSource(
         getUrlForLanguageId = getUrlForLanguageId,
         config = {},
     )
-
-    private val json = Json {
-        ignoreUnknownKeys = true
-        isLenient = true
-    }
 
     @OptIn(ExperimentalSerializationApi::class)
     override suspend fun fetchStrings(

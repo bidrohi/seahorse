@@ -59,6 +59,7 @@ sqldelight-sqlite = { group = "app.cash.sqldelight", name = "sqlite-driver", ver
 test-androidx-work = { group = "androidx.work", name = "work-testing", version.ref = "androidx-work" }
 test-kotlin = { group = "org.jetbrains.kotlin", name = "kotlin-test", version.ref = "kotlin" }
 test-mockk = { module = "io.mockk:mockk", version.ref = "test-mockk" }
+test-okhttp-mockwebserver = { group = "com.squareup.okhttp3", name = "mockwebserver", version.ref = "okhttp-bom" }
 test-robolectric = { group = "org.robolectric", name = "robolectric", version.ref = "test-robolectric" }
 
 [plugins]
