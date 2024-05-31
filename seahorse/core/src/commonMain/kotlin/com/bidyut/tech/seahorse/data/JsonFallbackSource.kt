@@ -13,6 +13,7 @@ abstract class JsonFallbackSource(
     },
 ) : FallbackSource {
     private var languageId: LanguageId = LanguageEnglish
+    private var currentStringsLoaded = false
     private val stringMapByLanguage = mutableMapOf<LanguageId, Map<String, String>>()
 
     override fun setLanguageId(
@@ -22,6 +23,7 @@ abstract class JsonFallbackSource(
             stringMapByLanguage[languageId] = readStrings(languageId).mapValues {
                 sanitiseFormatString(it.value)
             }
+            currentStringsLoaded = true
         }
         this.languageId = languageId
     }
@@ -29,8 +31,13 @@ abstract class JsonFallbackSource(
     override fun getStringByKey(
         key: String,
         vararg formatArgs: Any,
-    ): String? = stringMapByLanguage[languageId]?.get(key)?.let {
-        formatString(it, *formatArgs)
+    ): String? {
+        if (!currentStringsLoaded) {
+            setLanguageId(languageId)
+        }
+        return stringMapByLanguage[languageId]?.get(key)?.let {
+            formatString(it, *formatArgs)
+        }
     }
 
     protected fun parseStrings(
