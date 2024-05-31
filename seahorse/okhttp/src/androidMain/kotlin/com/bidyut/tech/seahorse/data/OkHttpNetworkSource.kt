@@ -1,6 +1,8 @@
 package com.bidyut.tech.seahorse.data
 
 import com.bidyut.tech.seahorse.model.LanguageId
+import com.bidyut.tech.seahorse.utils.SeahorseUserAgentProvider
+import com.bidyut.tech.seahorse.utils.UserAgentProvider
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import kotlinx.serialization.ExperimentalSerializationApi
@@ -17,7 +19,8 @@ class OkHttpNetworkSource(
 ) : NetworkSource {
     constructor(
         getUrlForLanguageId: (LanguageId) -> String,
-        client: OkHttpClient.Builder.() -> Unit,
+        userAgentProvider: UserAgentProvider = SeahorseUserAgentProvider(),
+        config: OkHttpClient.Builder.() -> Unit,
     ) : this(
         OkHttpClient.Builder()
             .addNetworkInterceptor {
@@ -26,12 +29,12 @@ class OkHttpNetworkSource(
                         .newBuilder()
                         .addHeader(
                             "User-Agent",
-                            "Seahorse/0.0.1 $userAgent"
+                            "${userAgentProvider.get()} $userAgent"
                         )
                         .build()
                 )
             }
-            .apply(client)
+            .apply(config)
             .build(),
         getUrlForLanguageId,
     )
@@ -39,8 +42,8 @@ class OkHttpNetworkSource(
     constructor(
         getUrlForLanguageId: (LanguageId) -> String,
     ) : this(
-        getUrlForLanguageId,
-        {},
+        getUrlForLanguageId = getUrlForLanguageId,
+        config = {},
     )
 
     private val json = Json {

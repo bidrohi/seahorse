@@ -6,11 +6,11 @@ import io.ktor.client.engine.winhttp.WinHttp
 
 class WinHttpKtorNetworkSource(
     getUrlForLanguageId: (LanguageId) -> String,
-    client: HttpClientConfig<*>.() -> Unit,
+    config: HttpClientConfig<*>.() -> Unit,
 ) : KtorNetworkSource(
     getUrlForLanguageId,
     WinHttp,
-    client,
+    config,
 ) {
     constructor(
         getUrlForLanguageId: (LanguageId) -> String,

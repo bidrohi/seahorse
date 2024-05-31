@@ -6,11 +6,11 @@ import io.ktor.client.engine.darwin.Darwin
 
 class DarwinKtorNetworkSource(
     getUrlForLanguageId: (LanguageId) -> String,
-    client: HttpClientConfig<*>.() -> Unit,
+    config: HttpClientConfig<*>.() -> Unit,
 ) : KtorNetworkSource(
     getUrlForLanguageId,
     Darwin,
-    client,
+    config,
 ) {
     constructor(
         getUrlForLanguageId: (LanguageId) -> String,

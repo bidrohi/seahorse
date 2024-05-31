@@ -1,6 +1,8 @@
 package com.bidyut.tech.seahorse.data
 
 import com.bidyut.tech.seahorse.model.LanguageId
+import com.bidyut.tech.seahorse.utils.SeahorseUserAgentProvider
+import com.bidyut.tech.seahorse.utils.UserAgentProvider
 import io.ktor.client.HttpClient
 import io.ktor.client.HttpClientConfig
 import io.ktor.client.call.body
@@ -24,6 +26,7 @@ open class KtorNetworkSource(
     constructor(
         getUrlForLanguageId: (LanguageId) -> String,
         engine: HttpClientEngine,
+        userAgentProvider: UserAgentProvider = SeahorseUserAgentProvider(),
         config: HttpClientConfig<*>.() -> Unit,
     ) : this(
         HttpClient(engine) {
@@ -38,7 +41,7 @@ open class KtorNetworkSource(
                 gzip(0.9F)
             }
             install(UserAgent) {
-                agent = "Seahorse/0.9.0"
+                agent = userAgentProvider.get()
             }
             install(HttpCache)
             config()
@@ -49,20 +52,20 @@ open class KtorNetworkSource(
     constructor(
         getUrlForLanguageId: (LanguageId) -> String,
         engineFactory: HttpClientEngineFactory<*>,
-        clientConfig: HttpClientConfig<*>.() -> Unit,
+        config: HttpClientConfig<*>.() -> Unit,
     ) : this(
-        getUrlForLanguageId,
-        engineFactory.create(),
-        clientConfig
+        getUrlForLanguageId = getUrlForLanguageId,
+        engine = engineFactory.create(),
+        config = config,
     )
 
     constructor(
         engine: HttpClientEngine,
         getUrlForLanguageId: (LanguageId) -> String,
     ) : this(
-        getUrlForLanguageId,
-        engine,
-        {},
+        getUrlForLanguageId = getUrlForLanguageId,
+        engine = engine,
+        config = {},
     )
 
     override suspend fun fetchStrings(

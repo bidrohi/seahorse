@@ -6,11 +6,11 @@ import io.ktor.client.engine.cio.CIO
 
 class CioKtorNetworkSource(
     getUrlForLanguageId: (LanguageId) -> String,
-    client: HttpClientConfig<*>.() -> Unit,
+    config: HttpClientConfig<*>.() -> Unit,
 ) : KtorNetworkSource(
     getUrlForLanguageId,
     CIO,
-    client,
+    config,
 ) {
     constructor(
         getUrlForLanguageId: (LanguageId) -> String,
