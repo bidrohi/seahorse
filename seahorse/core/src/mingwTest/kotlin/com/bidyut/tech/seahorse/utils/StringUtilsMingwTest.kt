@@ -35,4 +35,20 @@ class StringUtilsMingwTest {
             formatString(sanitiseFormatString("%s %s %s %s %s"), "Check", "Mingw", "is", "mentioned", "here")
         )
     }
+
+    @Test
+    fun testPercentageFormat() {
+        assertEquals(
+            "100%",
+            formatString("100%")
+        )
+        assertEquals(
+            "1% of 100%",
+            formatString("%s%% of 100%%", "1")
+        )
+        assertEquals(
+            "%s%% of 100%%",
+            formatString("%s%% of 100%%")
+        )
+    }
 }
