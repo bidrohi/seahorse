@@ -75,7 +75,7 @@ kover {
                 rule {
                     groupBy = GroupingEntityType.APPLICATION
                     bound {
-                        minValue = 72
+                        minValue = 90
                         coverageUnits = CoverageUnit.LINE
                         aggregationForGroup = AggregationType.COVERED_PERCENTAGE
                     }
