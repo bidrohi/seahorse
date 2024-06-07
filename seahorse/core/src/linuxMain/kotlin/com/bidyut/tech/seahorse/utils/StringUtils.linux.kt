@@ -4,6 +4,8 @@ import com.bidyut.tech.seahorse.annotation.SeahorseInternalApi
 import kotlinx.cinterop.ExperimentalForeignApi
 import kotlinx.cinterop.addressOf
 import kotlinx.cinterop.convert
+import kotlinx.cinterop.cstr
+import kotlinx.cinterop.toKStringFromUtf8
 import kotlinx.cinterop.usePinned
 import platform.posix.size_t
 import platform.posix.snprintf
@@ -27,23 +29,25 @@ actual fun formatString(
     if (args.isEmpty()) {
         return fmt
     }
-    val maxLen = fmt.length + args.sumOf { it.toString().length }
-    val buf = ByteArray(maxLen)
-    buf.usePinned { pinned ->
+    val strArgs = args.map {
+        it.toString()
+    }
+    val maxLen = fmt.cstr.size + strArgs.sumOf { it.cstr.size }
+    return ByteArray(maxLen).usePinned { pinned ->
         val outBuf = pinned.addressOf(0)
         val bufLen = maxLen.convert<size_t>()
         val size = when (args.size) {
-            1 -> snprintf(outBuf, bufLen, fmt, args[0].toString())
-            2 -> snprintf(outBuf, bufLen, fmt, args[0].toString(), args[1].toString())
-            3 -> snprintf(outBuf, bufLen, fmt, args[0].toString(), args[1].toString(), args[2].toString())
-            4 -> snprintf(outBuf, bufLen, fmt, args[0].toString(), args[1].toString(), args[2].toString(), args[3].toString())
-            5 -> snprintf(outBuf, bufLen, fmt, args[0].toString(), args[1].toString(), args[2].toString(), args[3].toString(), args[4].toString())
-            6 -> snprintf(outBuf, bufLen, fmt, args[0].toString(), args[1].toString(), args[2].toString(), args[3].toString(), args[4].toString(), args[5].toString())
+            1 -> snprintf(outBuf, bufLen, fmt, strArgs[0])
+            2 -> snprintf(outBuf, bufLen, fmt, strArgs[0], strArgs[1])
+            3 -> snprintf(outBuf, bufLen, fmt, strArgs[0], strArgs[1], strArgs[2])
+            4 -> snprintf(outBuf, bufLen, fmt, strArgs[0], strArgs[1], strArgs[2], strArgs[3])
+            5 -> snprintf(outBuf, bufLen, fmt, strArgs[0], strArgs[1], strArgs[2], strArgs[3], strArgs[4])
+            6 -> snprintf(outBuf, bufLen, fmt, strArgs[0], strArgs[1], strArgs[2], strArgs[3], strArgs[4], strArgs[5])
             else -> throw IllegalArgumentException("can't handle more then 6 arguments now")
         }
-        if (size < 0) {
-            throw IllegalArgumentException("Failed to format string: $fmt")
+        if (size < 0 || size > maxLen) {
+            throw IllegalArgumentException("Failed to format string, needed $size, have $maxLen: $fmt")
         }
+        outBuf.toKStringFromUtf8()
     }
-    return buf.decodeToString()
 }
