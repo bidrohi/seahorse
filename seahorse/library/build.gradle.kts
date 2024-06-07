@@ -37,7 +37,6 @@ kotlin {
             xcf.add(this)
             isStatic = true
             linkerOpts.add("-lsqlite3")
-            export(libs.nsexception)
             export(project(":seahorse:core"))
             export(project(":seahorse:ktor"))
             export(project(":seahorse:okhttp"))

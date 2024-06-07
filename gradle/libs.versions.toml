@@ -3,7 +3,7 @@ androidGradle = "8.4.1"
 android-jdk-desugar = "2.0.4"
 androidx-activity = "1.9.0"
 androidx-core = "1.13.1"
-androidx-lifecycle = "2.8.0"
+androidx-lifecycle = "2.8.1"
 androidx-navigation = "2.7.7"
 androidx-preferences = "1.2.1"
 androidx-work = "2.9.0"
@@ -15,7 +15,6 @@ kotlinx-datetime = "0.6.0"
 kotlinx-kover = "0.8.0"
 kotlinx-serialization-json = "1.6.3"
 ktor = "2.3.11"
-nsexception = "1.0.0-BETA-3"
 okhttp-bom = "4.12.0"
 sqldelight = "2.0.2"
 test-mockk = "1.13.11"
@@ -50,7 +49,6 @@ ktor-client-encoding = { group = "io.ktor", name = "ktor-client-encoding", versi
 ktor-client-mock = { group = "io.ktor", name = "ktor-client-mock", version.ref = "ktor" }
 ktor-client-winhttp = { group = "io.ktor", name = "ktor-client-winhttp", version.ref = "ktor" }
 ktor-serialization-json = { group = "io.ktor", name = "ktor-serialization-kotlinx-json", version.ref = "ktor" }
-nsexception = { group = "com.rickclephas.kmp", name = "nsexception-kt-core", version.ref = "nsexception" }
 okhttp-core = { group = "com.squareup.okhttp3", name = "okhttp", version.ref = "okhttp-bom" }
 sqldelight-android = { group = "app.cash.sqldelight", name = "android-driver", version.ref = "sqldelight" }
 sqldelight-native = { group = "app.cash.sqldelight", name = "native-driver", version.ref = "sqldelight" }

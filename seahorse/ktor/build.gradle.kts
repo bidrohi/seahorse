@@ -55,7 +55,6 @@ kotlin {
         }
         appleMain.dependencies {
             implementation(libs.ktor.client.darwin)
-            api(libs.nsexception)
         }
         jvmMain.dependencies {
             implementation(libs.ktor.client.cio)

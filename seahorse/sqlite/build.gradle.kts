@@ -50,7 +50,6 @@ kotlin {
         }
         appleMain.dependencies {
             implementation(libs.sqldelight.native)
-            api(libs.nsexception)
         }
         nativeMain.dependencies {
             implementation(libs.sqldelight.native)
