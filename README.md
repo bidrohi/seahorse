@@ -2,7 +2,7 @@
 
 [![Kotlin Alpha](https://kotl.in/badges/alpha.svg)](https://kotlinlang.org/docs/components-stability.html)
 [![Kotlin](https://img.shields.io/badge/Kotlin-2.0.0-purple.svg?style=flat&logo=kotlin)](https://kotlinlang.org)
-[![License](https://img.shields.io/badge/License-CC_BY_NC_SA_4.0-blue.svg)](https://github.com/bidrohi/seahorse/blob/master/LICENSE.md)
+[![License](https://img.shields.io/badge/License-CC_BY_SA_4.0-blue.svg)](https://github.com/bidrohi/seahorse/blob/master/LICENSE.md)
 
 ![badge-jvm](http://img.shields.io/badge/platform-jvm-DB413D.svg?style=flat)
 ![badge-android](http://img.shields.io/badge/platform-android-6EDB8D.svg?style=flat)
@@ -97,7 +97,7 @@ val seahorse = Seahorse {
 
 ```toml
 [libraries]
-seahorse-okhttp = { group = "com.bidyut.tech.seahorse", name = "seahorse-sqlite", version.ref = "seahorse" }
+seahorse-sqlite = { group = "com.bidyut.tech.seahorse", name = "seahorse-sqlite", version.ref = "seahorse" }
 ```
 
 </details>
@@ -118,7 +118,7 @@ val seahorse = Seahorse {
 
 ```toml
 [libraries]
-seahorse-okhttp = { group = "com.bidyut.tech.seahorse", name = "seahorse-ktor", version.ref = "seahorse" }
+seahorse-ktor = { group = "com.bidyut.tech.seahorse", name = "seahorse-ktor", version.ref = "seahorse" }
 ```
 
 </details>
