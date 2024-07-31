@@ -31,8 +31,9 @@ class FetchStringsFailureException(
 suspend fun Seahorse.fetchStringsAsync(
     @ObjCName("_")
     languageId: LanguageId,
+    forceUpdate: Boolean,
 ): NSDate {
-    val result = fetchStrings(languageId)
+    val result = fetchStrings(languageId, forceUpdate)
     return if (result.isSuccess) {
         result.getOrThrow().toNSDate()
     } else {

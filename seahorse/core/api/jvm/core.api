@@ -2,7 +2,8 @@ public final class com/bidyut/tech/seahorse/Seahorse {
 	public fun <init> (Lkotlin/jvm/functions/Function1;)V
 	public final fun clearStore (Ljava/util/List;)I
 	public final fun clearStore-gIAlu-s (Ljava/lang/String;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
-	public final fun fetchStrings-gIAlu-s (Ljava/lang/String;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public final fun fetchStrings-0E7RQCE (Ljava/lang/String;ZLkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public static synthetic fun fetchStrings-0E7RQCE$default (Lcom/bidyut/tech/seahorse/Seahorse;Ljava/lang/String;ZLkotlin/coroutines/Continuation;ILjava/lang/Object;)Ljava/lang/Object;
 	public final fun getDefaultLanguageId ()Ljava/lang/String;
 	public final fun getString (Ljava/lang/String;)Ljava/lang/String;
 	public final fun getString (Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/String;

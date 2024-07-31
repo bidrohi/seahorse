@@ -12,6 +12,7 @@ import kotlin.experimental.ExperimentalObjCRefinement
 import kotlin.native.ObjCName
 import kotlin.native.ShouldRefineInSwift
 import kotlin.time.Duration
+import kotlin.time.Duration.Companion.seconds
 
 @OptIn(ExperimentalObjCName::class, ExperimentalObjCRefinement::class)
 class Seahorse(
@@ -71,10 +72,11 @@ class Seahorse(
     suspend fun fetchStrings(
         @ObjCName("_")
         languageId: LanguageId,
+        forceUpdate: Boolean = false,
     ): Result<Instant> {
         return repository.fetchStrings(
             languageId,
-            cacheInterval,
+            if (forceUpdate) 0.seconds else cacheInterval,
         )
     }
 
@@ -91,7 +93,7 @@ class Seahorse(
         return runBlocking(Dispatchers.IO) {
             var success = 0
             for (language in languages) {
-                val result = fetchStrings(language)
+                val result = fetchStrings(language, forceUpdate = true)
                 if (!result.isFailure) {
                     success++
                 }
