@@ -44,7 +44,7 @@ class StringUtilsAppleTest {
         )
         assertEquals(
             "1% of 100%",
-            formatString("%s%% of 100%%", "1")
+            formatString(sanitiseFormatString("%s%% of 100%%"), "1")
         )
         assertEquals(
             "%s%% of 100%%",
