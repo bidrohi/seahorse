@@ -34,7 +34,7 @@ class StringListViewModel: ObservableObject {
     func fetchStrings(
         _ languageId: String
     ) {
-        self.seahorse.fetchStringsAsync(languageId) { updatedTime, error in
+        self.seahorse.fetchStringsAsync(languageId, forceUpdate: false) { updatedTime, error in
             if error != nil {
                 // handle error
             } else {
