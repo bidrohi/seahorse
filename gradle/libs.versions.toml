@@ -1,5 +1,5 @@
 [versions]
-androidGradle = "8.7.0"
+androidGradle = "8.8.0"
 android-jdk-desugar = "2.1.2"
 androidx-activity = "1.9.2"
 androidx-core = "1.13.1"
