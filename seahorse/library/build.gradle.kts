@@ -39,7 +39,6 @@ kotlin {
             linkerOpts.add("-lsqlite3")
             export(project(":seahorse:core"))
             export(project(":seahorse:ktor"))
-            export(project(":seahorse:okhttp"))
             export(project(":seahorse:sqlite"))
         }
     }
@@ -55,8 +54,13 @@ kotlin {
         commonMain.dependencies {
             api(project(":seahorse:core"))
             api(project(":seahorse:ktor"))
-            api(project(":seahorse:okhttp"))
             api(project(":seahorse:sqlite"))
+        }
+        androidMain.dependencies {
+            api(project(":seahorse:okhttp"))
+        }
+        jvmMain.dependencies {
+            api(project(":seahorse:okhttp"))
         }
     }
 }

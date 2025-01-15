@@ -2,7 +2,6 @@ import com.vanniktech.maven.publish.SonatypeHost
 
 plugins {
     alias(libs.plugins.kotlin.multiplatform)
-    alias(libs.plugins.android.library)
     alias(libs.plugins.kotlinx.kover)
     alias(libs.plugins.vanniktech.publish)
 }
@@ -13,10 +12,10 @@ group = libNamespace
 version = libVersion
 
 kotlin {
-    androidTarget()
+    jvm()
 
     sourceSets {
-        androidMain.dependencies {
+        jvmMain.dependencies {
             implementation(project(":seahorse:core"))
 
             implementation(libs.kotlinx.coroutines.core)
@@ -24,16 +23,11 @@ kotlin {
 
             implementation(libs.okhttp.core)
         }
-        val androidUnitTest by getting
-        androidUnitTest.dependencies {
+        jvmTest.dependencies {
             implementation(libs.test.kotlin)
             implementation(libs.test.okhttp.mockwebserver)
         }
     }
-}
-
-android {
-    namespace = "com.bidyut.tech.seahorse.data.okhttp"
 }
 
 mavenPublishing {
