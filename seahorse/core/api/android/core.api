@@ -37,6 +37,12 @@ public final class com/bidyut/tech/seahorse/SeahorseExtKt {
 	public static final fun schedule (Lcom/bidyut/tech/seahorse/Seahorse;Landroidx/work/WorkManager;Ljava/lang/Class;[Ljava/lang/String;)Landroidx/work/Operation;
 }
 
+public final class com/bidyut/tech/seahorse/data/ByteArrayFallbackSource : com/bidyut/tech/seahorse/data/JsonFallbackSource {
+	public fun <init> (Lkotlin/jvm/functions/Function2;Lkotlin/coroutines/CoroutineContext;)V
+	public synthetic fun <init> (Lkotlin/jvm/functions/Function2;Lkotlin/coroutines/CoroutineContext;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public fun readStrings (Ljava/lang/String;)Ljava/util/Map;
+}
+
 public abstract interface class com/bidyut/tech/seahorse/data/FallbackSource {
 	public abstract fun getStringByKey (Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/String;
 	public abstract fun setLanguageId (Ljava/lang/String;)V
