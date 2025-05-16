@@ -22,7 +22,7 @@ plugins {
 }
 
 val libNamespace by rootProject.extra { "com.bidyut.tech.seahorse" }
-val libVersion by rootProject.extra { "0.12.0" }
+val libVersion by rootProject.extra { "1.0.0" }
 
 apiValidation {
     ignoredPackages += setOf(
