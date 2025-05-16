@@ -3,7 +3,6 @@ import com.bidyut.tech.seahorse.data.CioKtorNetworkSource
 import com.bidyut.tech.seahorse.data.JdbcSqliteLocalStore
 import com.bidyut.tech.seahorse.data.LocalStore
 import com.bidyut.tech.seahorse.data.MapLocalStore
-import com.bidyut.tech.seahorse.data.RealmLocalStore
 import com.bidyut.tech.seahorse.example.data.JsonResourceFallbackSource
 import com.bidyut.tech.seahorse.model.LanguageBengali
 import com.bidyut.tech.seahorse.model.LanguageEnglish
@@ -100,7 +99,6 @@ private fun makeLocalStore(): LocalStore {
     println()
     println("1. In-memory store")
     println("2. SQLite store")
-    println("3. Realm store")
     print("Enter your choice: ")
     val choice = readlnOrNull() ?: ""
     return when (choice) {
@@ -112,11 +110,6 @@ private fun makeLocalStore(): LocalStore {
         "2" -> {
             println("Using SQLite store")
             JdbcSqliteLocalStore()
-        }
-
-        "3" -> {
-            println("Using Realm store")
-            RealmLocalStore()
         }
 
         else -> {

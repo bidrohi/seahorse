@@ -57,7 +57,6 @@ dependencies {
     kover(project(":seahorse:core"))
     kover(project(":seahorse:ktor"))
     kover(project(":seahorse:okhttp"))
-    kover(project(":seahorse:realm"))
     kover(project(":seahorse:sqlite"))
 }
 

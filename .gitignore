@@ -12,4 +12,3 @@ Pods/
 *.podspec
 *.db
 .kotlin/
-*.realm*

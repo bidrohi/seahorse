@@ -100,23 +100,6 @@ val seahorse = Seahorse {
 seahorse-sqlite = { group = "com.bidyut.tech.seahorse", name = "seahorse-sqlite", version.ref = "seahorse" }
 ```
 
-Or we can use Realm database:
-```kotlin
-val seahorse = Seahorse {
-    fallbackSource = ResourceFallbackSource(context)
-    localStore = RealmLocalStore()
-}
-```
-<details>
-<summary>Library setup</summary>
-
-```toml
-[libraries]
-seahorse-realm = { group = "com.bidyut.tech.seahorse", name = "seahorse-realm", version.ref = "seahorse" }
-```
-
-</details>
-
 ### Ktor Network Source
 And we can pair that up with an Ktor network source:
 ```kotlin
