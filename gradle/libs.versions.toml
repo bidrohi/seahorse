@@ -21,7 +21,7 @@ realm = "3.0.0"
 sqldelight = "2.0.2"
 test-mockk = "1.14.2"
 test-robolectric = "4.14.1"
-vanniktech-publish = "0.30.0"
+vanniktech-publish = "0.32.0"
 
 [libraries]
 android-jdkDesugar = { module = "com.android.tools:desugar_jdk_libs", version.ref = "android-jdk-desugar" }
