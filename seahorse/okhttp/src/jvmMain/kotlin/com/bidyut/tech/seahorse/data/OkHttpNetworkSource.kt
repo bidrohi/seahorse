@@ -10,7 +10,6 @@ import kotlinx.serialization.json.Json
 import kotlinx.serialization.json.decodeFromStream
 import okhttp3.OkHttpClient
 import okhttp3.Request
-import okhttp3.internal.userAgent
 import okio.IOException
 
 class OkHttpNetworkSource(
@@ -31,10 +30,7 @@ class OkHttpNetworkSource(
                 it.proceed(
                     it.request()
                         .newBuilder()
-                        .addHeader(
-                            "User-Agent",
-                            "${userAgentProvider.get()} $userAgent"
-                        )
+                        .addHeader("User-Agent", userAgentProvider.get())
                         .build()
                 )
             }

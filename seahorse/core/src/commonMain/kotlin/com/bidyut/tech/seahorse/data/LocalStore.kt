@@ -2,7 +2,7 @@ package com.bidyut.tech.seahorse.data
 
 import com.bidyut.tech.seahorse.model.LanguageId
 import kotlinx.coroutines.runBlocking
-import kotlinx.datetime.Instant
+import kotlin.time.Instant
 
 interface LocalStore {
     fun getLastUpdatedTime(

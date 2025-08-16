@@ -6,13 +6,13 @@ import com.bidyut.tech.seahorse.model.LanguageId
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.IO
 import kotlinx.coroutines.runBlocking
-import kotlinx.datetime.Instant
 import kotlin.experimental.ExperimentalObjCName
 import kotlin.experimental.ExperimentalObjCRefinement
 import kotlin.native.ObjCName
 import kotlin.native.ShouldRefineInSwift
 import kotlin.time.Duration
 import kotlin.time.Duration.Companion.seconds
+import kotlin.time.Instant
 
 @OptIn(ExperimentalObjCName::class, ExperimentalObjCRefinement::class)
 class Seahorse(

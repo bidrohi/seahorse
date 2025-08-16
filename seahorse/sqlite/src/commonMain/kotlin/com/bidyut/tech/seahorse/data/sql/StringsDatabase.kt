@@ -4,8 +4,8 @@ import com.bidyut.tech.seahorse.annotation.SeahorseInternalApi
 import com.bidyut.tech.seahorse.model.LanguageId
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
-import kotlinx.datetime.Clock
-import kotlinx.datetime.Instant
+import kotlin.time.Clock
+import kotlin.time.Instant
 
 @SeahorseInternalApi
 internal class StringsDatabase(

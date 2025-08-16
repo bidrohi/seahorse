@@ -22,7 +22,7 @@ plugins {
 }
 
 val libNamespace by rootProject.extra { "com.bidyut.tech.seahorse" }
-val libVersion by rootProject.extra { "1.0.0" }
+val libVersion by rootProject.extra { "1.1.0" }
 
 apiValidation {
     ignoredPackages += setOf(
@@ -49,6 +49,7 @@ configure(subprojects) {
     tasks.withType<KotlinJvmCompile>().configureEach {
         compilerOptions {
             jvmTarget.set(kotlinJvmTarget)
+            optIn.add("kotlin.time.ExperimentalTime")
         }
     }
     tasks.withType<JavaCompile>().configureEach {
@@ -60,17 +61,21 @@ configure(subprojects) {
 subprojects {
     afterEvaluate {
         (extensions.findByName("kotlin") as? KotlinMultiplatformExtension)?.apply {
+            sourceSets.all {
+                languageSettings.optIn("kotlin.time.ExperimentalTime")
+            }
             (targets.findByName("androidTarget") as? KotlinAndroidTarget)?.apply {
                 publishLibraryVariants("release")
                 @OptIn(ExperimentalKotlinGradlePluginApi::class)
                 compilerOptions {
                     jvmTarget.set(kotlinJvmTarget)
+                    optIn.add("kotlin.time.ExperimentalTime")
                 }
             }
         }
         (extensions.findByName("android") as? CommonExtension<*, *, *, *, *, *>)?.apply {
-            compileSdk = 35
-            buildToolsVersion = "35.0.0"
+            compileSdk = 36
+            buildToolsVersion = "36.0.0"
             defaultConfig {
                 minSdk = 21
                 testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"

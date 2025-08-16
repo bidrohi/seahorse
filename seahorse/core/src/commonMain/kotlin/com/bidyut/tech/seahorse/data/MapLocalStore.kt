@@ -3,8 +3,8 @@ package com.bidyut.tech.seahorse.data
 import com.bidyut.tech.seahorse.model.LanguageId
 import com.bidyut.tech.seahorse.utils.formatString
 import com.bidyut.tech.seahorse.utils.sanitiseFormatString
-import kotlinx.datetime.Clock
-import kotlinx.datetime.Instant
+import kotlin.time.Clock
+import kotlin.time.Instant
 
 class MapLocalStore : LocalStore {
     private val stringMapByLanguage = mutableMapOf<LanguageId, Map<String, String>>()

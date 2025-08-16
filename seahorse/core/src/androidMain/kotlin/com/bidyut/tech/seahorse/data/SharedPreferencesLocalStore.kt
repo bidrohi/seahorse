@@ -5,8 +5,8 @@ import android.content.SharedPreferences
 import androidx.core.content.edit
 import com.bidyut.tech.seahorse.model.LanguageId
 import com.bidyut.tech.seahorse.utils.formatString
-import kotlinx.datetime.Clock
-import kotlinx.datetime.Instant
+import kotlin.time.Clock
+import kotlin.time.Instant
 
 class SharedPreferencesLocalStore(
     private val context: Context,

@@ -5,7 +5,7 @@ import com.bidyut.tech.seahorse.data.sql.StringsDatabase
 import com.bidyut.tech.seahorse.model.LanguageId
 import com.bidyut.tech.seahorse.utils.formatString
 import com.bidyut.tech.seahorse.utils.sanitiseFormatString
-import kotlinx.datetime.Instant
+import kotlin.time.Instant
 
 open class SqliteLocalStore(
     driverFactory: DatabaseDriverFactory,

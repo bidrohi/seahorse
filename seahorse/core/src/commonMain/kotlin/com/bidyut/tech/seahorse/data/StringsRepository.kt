@@ -2,9 +2,9 @@ package com.bidyut.tech.seahorse.data
 
 import com.bidyut.tech.seahorse.annotation.SeahorseInternalApi
 import com.bidyut.tech.seahorse.model.LanguageId
-import kotlinx.datetime.Clock
-import kotlinx.datetime.Instant
+import kotlin.time.Clock
 import kotlin.time.Duration
+import kotlin.time.Instant
 
 @SeahorseInternalApi
 internal class StringsRepository(

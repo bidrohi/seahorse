@@ -1,5 +1,6 @@
 package com.bidyut.tech.seahorse.example.ui.screen
 
+import android.content.ClipData
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -22,8 +23,8 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.platform.LocalClipboardManager
-import androidx.compose.ui.text.AnnotatedString
+import androidx.compose.ui.platform.ClipEntry
+import androidx.compose.ui.platform.LocalClipboard
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.bidyut.tech.seahorse.model.LanguageBengali
@@ -39,13 +40,15 @@ fun StringListScreen(
 ) {
     val scope = rememberCoroutineScope()
     val snackbarHost = remember { SnackbarHostState() }
-    val clipboardManager = LocalClipboardManager.current
+    val clipboard = LocalClipboard.current
     LaunchedEffect(true) {
         scope.launch {
             viewModel.effect.collect {
                 when (it) {
                     is StringListContract.Effect.CopyKeyToClipboard -> {
-                        clipboardManager.setText(AnnotatedString(it.key))
+                        clipboard.setClipEntry(
+                            ClipEntry(ClipData.newPlainText("key", it.key))
+                        )
                         snackbarHost.showSnackbar(
                             message = "String key copied!"
                         )
@@ -130,7 +133,8 @@ fun ExampleStringList(
         contentPadding = PaddingValues(4.dp),
     ) {
         items(viewModel.stringKeys) {
-            StringRow(key = it,
+            StringRow(
+                key = it,
                 value = when (it) {
                     "platform" -> {
                         viewModel.seahorse.getString(it, "Android")

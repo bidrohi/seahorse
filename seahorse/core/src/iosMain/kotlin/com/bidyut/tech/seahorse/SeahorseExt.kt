@@ -4,11 +4,11 @@ package com.bidyut.tech.seahorse
 
 import com.bidyut.tech.seahorse.model.LanguageId
 import kotlinx.cinterop.ExperimentalForeignApi
-import kotlinx.datetime.Clock
 import kotlinx.datetime.toNSDate
 import platform.BackgroundTasks.BGAppRefreshTaskRequest
 import platform.BackgroundTasks.BGTaskScheduler
 import kotlin.experimental.ExperimentalObjCName
+import kotlin.time.Clock
 import kotlin.time.Duration.Companion.seconds
 
 const val REFRESH_STRINGS_BACKGROUND_TASK_ID = "com.bidyut.tech.seahorse.refreshStrings"

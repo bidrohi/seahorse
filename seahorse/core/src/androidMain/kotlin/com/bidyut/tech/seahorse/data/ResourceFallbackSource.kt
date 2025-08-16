@@ -16,7 +16,7 @@ class ResourceFallbackSource(
     override fun setLanguageId(
         languageId: LanguageId,
     ) {
-        configuration.setLocale(Locale(languageId))
+        configuration.setLocale(Locale.forLanguageTag(languageId))
         context = appContext.createConfigurationContext(configuration)
     }
 

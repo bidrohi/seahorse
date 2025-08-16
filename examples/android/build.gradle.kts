@@ -14,7 +14,7 @@ android {
     defaultConfig {
         applicationId = "com.bidyut.tech.seahorse.example"
         //noinspection OldTargetApi
-        targetSdk = 34
+        targetSdk = 36
         versionCode = 1
         versionName = "1.0"
     }

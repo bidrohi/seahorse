@@ -10,7 +10,7 @@ import com.bidyut.tech.seahorse.model.LanguageEnglish
 import com.bidyut.tech.seahorse.model.LanguageId
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-import kotlinx.datetime.Instant
+import kotlin.time.Instant
 
 class StringListViewModel(
     val seahorse: Seahorse,

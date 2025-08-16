@@ -1,7 +1,7 @@
 package com.bidyut.tech.seahorse.example.ui.screen
 
 import com.bidyut.tech.seahorse.model.LanguageId
-import kotlinx.datetime.Instant
+import kotlin.time.Instant
 
 interface StringListContract {
     sealed interface Trigger {
